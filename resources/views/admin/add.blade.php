@@ -15,8 +15,8 @@
                             </ul>
                         </div>
                     @endif
-                    
-                    <form class="forms-sample" form action="students" method="POST">
+                    {{ $item }}
+                    <form class="forms-sample" action="students" method="POST">
                     @csrf
                         <div class="form-group">
                             <label for="exampleInputNIM1">NIM</label>
@@ -30,25 +30,25 @@
                         </div>
                         <div class="form-group">
                             <label>Fakultas</label>
-                            <select class="js-example-basic-single w-100" name="fakultas" required>
+                            <select class="js-example-basic-single w-100" name="id_fakultas" required>
                                 <option value="">Pilih salah satu</option>
                                 @foreach ($item as $data)
-                                    <option value="">{{ $data['fakultas']['fakultas'] }}</option>
+                                    <option value="{{ $data->id_fakultas }}">{{ $data['fakultas']['fakultas'] }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Program Studi</label>
-                            <select class="js-example-basic-single w-100" name="prodi" required>
+                            <select class="js-example-basic-single w-100" name="id_prodi" required>
                                 <option value="">Pilih salah satu</option>
                                 @foreach ($item as $data)
-                                    <option value="">{{ $data['prodi']['prodi'] }}</option>
+                                    <option value="{{ $data->id_prodi }}">{{ $data['prodi']['prodi'] }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Jenis Kelamin</label>
-                            <select class="js-example-basic-single w-100" name="gender" required>
+                            <select class="js-example-basic-single w-100" name="gender" id="gender" required>
                                 <option value="L">
                                     Laki-laki
                                 </option>

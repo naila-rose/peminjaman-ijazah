@@ -17,16 +17,16 @@ use App\Http\Controllers\StudentController;
 */
 
 Route::get('/', function () {
-    return view('admin/user/login');
+    return view('admin/login');
 });
 Route::get('index', function () {
     return view('admin/index');
 });
 Route::get('login', function () {
-    return view('admin/user/login');
+    return view('admin/login');
 });
 Route::get('register', function () {
-    return view('admin/user/register');
+    return view('admin/register');
 });
 Route::resource('student', StudentController::class);
 Route::get('student-add', [StudentController::class, 'create']);
