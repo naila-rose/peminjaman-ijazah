@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Person;
 use Illuminate\Http\Request;
 use App\Models\Student;
+use Illuminate\Support\Facades\Session;
 use App\Models\Prodi;
 use App\Http\Requests\StudentCreateRequest;
 
@@ -49,6 +50,11 @@ class StudentController extends Controller
             'alamat'        => $request->alamat,
         ]);
 
+        if($person){
+            Session::flash('status', 'success');
+            Session::flash('message', 'Data Berhasil Disimpan');
+        }
+
         return redirect('/student');
     }
 
@@ -56,6 +62,10 @@ class StudentController extends Controller
     {
         $student = Student::findOrfail($id);
         $student->update($request->all());
+        if($student){
+            Session::flash('status', 'success');
+            Session::flash('message', 'Data Berhasil Diupdate');
+        }
         return redirect('/student');
     }
     public function delete($id)

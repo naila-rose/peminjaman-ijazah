@@ -14,6 +14,11 @@
                                 <i class="fas fa-plus"></i>
                             </a>
                             <div class="table-responsive">
+                                @if(Session::has('status'))
+                                <div class="alert alert-success" role="alert">
+                                    {{Session::get('message')}}
+                                </div>
+                                @endif
                               <table id="table1" class="table table-hover">
                                 <thead>
                                   <tr>

@@ -31,7 +31,7 @@ Route::get('register', function () {
 Route::resource('student', StudentController::class);
 Route::get('student-add', [StudentController::class, 'create']);
 Route::POST('students', [StudentController::class, 'store']);
-Route::put('student/{id}', [StudentController::class, 'update']);
+Route::PUT('student/{id}', [StudentController::class, 'update']);
 Route::get('student-delete/{id}', [StudentController::class, 'delete']);
 Route::delete('student-destroy/{id}', [StudentController::class, 'delete']);
 // Route::get('student/{id}', [StudentController::class, 'edit']);
