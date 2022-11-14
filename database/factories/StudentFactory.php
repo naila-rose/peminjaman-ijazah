@@ -24,14 +24,13 @@ class StudentFactory extends Factory
     {
         // $faker = Factory::create();
         return [
-            'id_peminjam' => mt_rand(1,20),
+            'id' => mt_rand(1,20),
             'nim' => mt_rand(000000000000001, 999999999999999),
             'nama' => $this->faker->name(),
             'gender' => Arr::random(['L', 'P']),
             'id_fakultas' => mt_rand(1,20),
             'id_prodi' => mt_rand(1,20),
-            // 'fakultas' =>  $this ->faker->text(10),
-            // 'prodi' =>  $this ->faker->text(10),
+            'id_person' => $this->faker->unique()->numberBetween($min = 1, $max = 20),
             'alamat' => $this -> faker->address()
         ];
     }

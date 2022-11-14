@@ -15,7 +15,7 @@
                             </ul>
                         </div>
                     @endif
-                    {{ $item }}
+                    {{-- {{ $item }} --}}
                     <form class="forms-sample" action="students" method="POST">
                     @csrf
                         <div class="form-group">
@@ -71,7 +71,7 @@
                         </div>
                         <div class="form-group">
                             <label>Hubungan</label>
-                            <select class="js-example-basic-single w-100" required>
+                            <select class="js-example-basic-single w-100" name="hubungan" required>
                                 <option value="">Pilih salah satu</option>
                                 <option value="Anggota keluarga / Teman">
                                     Anggota keluarga / Teman
@@ -105,7 +105,7 @@
                             <div class="col-sm-2">
                                 <div class="form-check" required>
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="membershipRadios"
+                                        <input type="radio" class="form-check-input" name="status"
                                             id="membershipRadios1" value="Tervalidasi">
                                         Tervalidasi
                                     </label>
@@ -114,7 +114,7 @@
                             <div class="col-sm-2">
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="membershipRadios"
+                                        <input type="radio" class="form-check-input" name="status"
                                             id="membershipRadios2" value="Pending">
                                         Pending
                                     </label>
@@ -123,7 +123,7 @@
                             <div class="col-sm-2">
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="membershipRadios"
+                                        <input type="radio" class="form-check-input" name="status"
                                             id="membershipRadios2" value="Tidak Tervalidasi">
                                         Tidak Tervalidasi
                                     </label>

@@ -11,18 +11,19 @@ class Student extends Model
 
     public $timestamps = false;
     protected $fillable = [
-        'id_peminjam',
+        'id',
         'nim',
         'nama',
-        'fakultas',
-        'prodi',
+        'id_fakultas',
+        'id_prodi',
+        'id_person',
         'gender',
         'alamat',
     ];
 
     public function person()
     {
-        return $this->belongsTo(Person::class, 'id_peminjam', 'id');
+        return $this->belongsTo(Person::class, 'id_person', 'id');
     }
 
     public function fakultas()

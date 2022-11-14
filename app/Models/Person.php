@@ -23,6 +23,6 @@ class Person extends Model
 
     public function student()
     {
-        return $this->hasOne(Student::class, 'id', 'id_peminjam');
+        return $this->hasOne(Student::class, 'id', 'id');
     }
 }

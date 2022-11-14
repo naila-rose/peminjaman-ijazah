@@ -12,12 +12,12 @@ class StudentController extends Controller
 {
     public function index()
     {
-        $student = Student::with('person','fakultas','prodi')->get();
+        $student = Student::orderBy('id', 'asc')->with('person','fakultas','prodi')->get();
         return view('admin.student', compact('student'));
     }
     public function edit($id)
     {
-        $student = Student::where('id_peminjam', $id)->first();
+        $student = Student::where('id', $id)->first();
         return view('admin.edit', compact('student'));
     }
     public function create(Request $request)
@@ -28,56 +28,30 @@ class StudentController extends Controller
     }
     public function store(Request $request)
     {
-        // $newname - '';
 
-        // if($request->file('image')){
-        //     $extension = $request->file('image')->getClientOriginalExtension();
-        //     $newName = $request->name.'-'.now()->timestamp.'.'.$extension;
-        //     return $request->file('image')->storeAs('image', $newName);
-        // };
-
-        // $request['image'] = $newName;
-        // $student = Student::create($request->all());
-        // $person = Person::create($request->all());
-        // $item = new Student;
-        // $item->nim = $request->nim;
-        // $item->nama = $request->nama;
-        // $item->id_fakultas = $request->id_fakultas;
-        // $item->id_prodi = $request->id_prodi;
-        // $item2 =new Person;
-        // $item2->nama_peminjam = $request->nama_peminjam;
-        // $item2->no_telp = $request->no_telp;
-        // $item2->status = $request->status;
-        // $item2->hubungan = $request->hubungan;
-        // $item2->tgl_pinjam = $request->tgl_pinjam;
-        // $item2->tgl_kembali = $request->tgl_kembali;
-        // $item->save();
-        // $item2->save();
-        Student::updateOrCreate(['id_peminjam' => $this->id], [
-            'nim' => $this->nim,
-            'nama' => $this->nama,
-            'id_fakultas' => $this->id_fakultas,
-            'id_prodi' => $this->id_prodi,
-        ]);
-        Person::updateOrCreate(['id' => $this->id], [
-            'id_peminjam' => $this->id,
-            'nama_peminjam' => $this->nama_peminjam,
-            'no_telp' => $this->no_telp,
-            'status' => $this->status,
-            'hubungan' => $this->hubungan,
-            'tgl_pinjam' => $this->tgl_pinjam,
-            'tgl_kembali' => $this->tgl_kembali,
+        $person = Person::create([
+            'nama_peminjam' => $request->nama_peminjam,
+            'no_telp'       => $request->no_telp,
+            'status'        => $request->status,
+            'hubungan'      => $request->hubungan,
+            'tgl_pinjam'    => $request->tgl_pinjam,
+            'tgl_kembali'   => $request->tgl_kembali,
+            'ket'           => $request->ket,
         ]);
 
+        Student::create([
+            'nim'           => $request->nim,
+            'nama'          => $request->nama,
+            'id_fakultas'   => $request->id_fakultas,
+            'id_prodi'      => $request->id_prodi,
+            'id_person'     => $person->id,
+            'gender'        => $request->gender,
+            'alamat'        => $request->alamat,
+        ]);
 
-
-        // $image = $request->file('image');
-        // $image->storeAs('public/image', $image->hashName());
-
-        // return redirect('/student')->with(['success' => 'Data Berhasil Disimpan']);
-
-        dd($request->all());
+        return redirect('/student');
     }
+
     public function update(Request $request, $id)
     {
         $student = Student::findOrfail($id);
@@ -93,6 +67,6 @@ class StudentController extends Controller
     {
         $deleteStudent = Student::findOrfail($id);
         $deleteStudent->delete();
-        // return redirect('/student')->with(['success' => 'Hapus Data Berhasil']);
+        return redirect('/student')->with(['success' => 'Hapus Data Berhasil']);
     }
 }

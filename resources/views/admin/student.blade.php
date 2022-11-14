@@ -48,10 +48,10 @@
                                         <td>{{ $data->person->tgl_pinjam }}</td>
                                         <td>{{ $data->person->tgl_kembali }}</td>
                                         <td>
-                                            <a href="/student/{{ $data->id_peminjam }}/edit" id="edit" class="btn btn-warning">
+                                            <a href="/student/{{ $data->id }}/edit" id="edit" class="btn btn-warning">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <a href="/student/{{ $data->id_peminjam }}" id="hapus" class="btn btn-danger">
+                                            <a href="/student/{{ $data->id }}" id="hapus" class="btn btn-danger">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </td>
