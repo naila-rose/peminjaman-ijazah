@@ -19,7 +19,7 @@
                         <div class="form-group">
                             <label for="exampleInputNIM1">NIM</label>
                             <input type="text" class="form-control" name="nim" id="exampleInputNIM1" placeholder="NIM"
-                                value="" required>
+                                value="">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputName1">Nama</label>

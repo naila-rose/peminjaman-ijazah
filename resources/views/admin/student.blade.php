@@ -56,8 +56,14 @@
                                             <a href="/student/{{ $data->id }}/edit" id="edit" class="btn btn-warning">
                                                 <i class="fas fa-edit"></i>
                                             </a>
-                                            <a href="/student/{{ $data->id }}" id="hapus" class="btn btn-danger">
-                                                <i class="fas fa-trash"></i>
+                                            <form action="/student/{{ $data->id }}" method="post" class="d-inline">
+                                                @method('delete')
+                                                @csrf
+                                                <button class="btn btn-danger" id="hapus" onclick="return confirm('Apakah anda ingin menghapus data ini?')">
+                                                    <i class="fas fa-trash"></i></button>
+                                            </form>
+                                            {{-- <a href="/student/{{ $data->id }}" id="hapus" class="btn btn-danger">
+                                                <i class="fas fa-trash"></i> --}}
                                             </a>
                                         </td>
                                       </tr>

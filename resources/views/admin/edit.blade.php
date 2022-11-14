@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Edit Data Peminjam</h4>
-                    <form class="forms-sample" form action="students" method="POST">
+                    <form class="forms-sample" form action="/student/{{ $student->id }}/edit" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
@@ -75,9 +75,6 @@
                                 </span>
                             </div>
                         </div>
-                        {{-- <div class="my-3 d-flex">
-                            <img src="{{ asset('storage/image/'.$student->image) }}" alt="" width="200px">
-                        </div> --}}
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Status</label>
                             <div class="col-sm-2">

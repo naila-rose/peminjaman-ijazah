@@ -24,15 +24,15 @@ class StudentCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'nim' => 'required|unique:students|max:15',
-            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            // 'fakultas' => 'required',
-            // 'prodi' => 'required',
-            // 'gender' => 'required',
-            // 'hubungan' => 'required',
-            // 'tgl_pinjam' => 'required',
-            // 'tgl_kembali' => 'required',
-            // 'status' => 'required'
+            'nim' => 'required|unique:students|max:15',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'fakultas' => 'required',
+            'prodi' => 'required',
+            'gender' => 'required',
+            'hubungan' => 'required',
+            'tgl_pinjam' => 'required',
+            'tgl_kembali' => 'required',
+            'status' => 'required'
         ];
     }
 
