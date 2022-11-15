@@ -62,9 +62,6 @@
                                                 <button class="btn btn-danger" id="hapus" onclick="return confirm('Apakah anda ingin menghapus data ini?')">
                                                     <i class="fas fa-trash"></i></button>
                                             </form>
-                                            {{-- <a href="/student/{{ $data->id }}" id="hapus" class="btn btn-danger">
-                                                <i class="fas fa-trash"></i> --}}
-                                            </a>
                                         </td>
                                       </tr>
                                     @endforeach

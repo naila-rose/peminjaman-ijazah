@@ -5,13 +5,19 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Edit Data Peminjam</h4>
-                    <form class="forms-sample" form action="/student/{{ $student->id }}/edit" method="POST">
+                    <form class="forms-sample" form action="/student/{{ $student->id }}" method="POST">
                         @csrf
                         @method('PUT')
+
                         <div class="form-group">
                             <label for="exampleInputNIM1">NIM</label>
                             <input type="text" class="form-control" id="exampleInputNIM1" placeholder="NIM"
-                                value="{{ $student['nim'] }}">
+                                value="{{ $student['nim'] }}" name="nim">
+                                @error('nim')
+                                    <div class="text-danger">
+                                        
+                                    </div>
+                                @enderror
                         </div>
                         <div class="form-group">
                             <label for="exampleInputName1">Nama</label>
@@ -20,19 +26,19 @@
                         </div>
                         <div class="form-group">
                             <label>Fakultas</label>
-                            <select class="js-example-basic-single w-100">
+                            <select class="js-example-basic-single w-100" name="id_fakultas">
                                 <option value="">{{ $student['fakultas']['fakultas'] }}</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Program Studi</label>
-                            <select class="js-example-basic-single w-100">
+                            <select class="js-example-basic-single w-100" name="id_prodi">
                                 <option value="">{{ $student['prodi']['prodi'] }}</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="exampleSelectGender">Jenis Kelamin</label>
-                            <select class="js-example-basic-single w-100" id="exampleSelectGender">
+                            <select class="js-example-basic-single w-100" id="exampleSelectGender" name="gender">
                                 <option @if ($student['gender'] == 'L') selected @endif>
                                     Laki-laki
                                 </option>
@@ -58,11 +64,11 @@
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">Tanggal Pinjam</label>
-                            <input type="date" class="form-control" value="{{ $student['person']['tgl_pinjam'] }}" />
+                            <input type="date" class="form-control" name="tgl_pinjam" value="{{ $student['person']['tgl_pinjam'] }}" />
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">Tanggal Kembali</label>
-                            <input class="form-control" type="date" value="{{ $student['person']['tgl_kembali'] }}" />
+                            <input class="form-control" type="date"  name="tgl_kembali" value="{{ $student['person']['tgl_kembali'] }}" />
                         </div>
                         <div class="form-group">
                             <label>Upload File</label>
@@ -80,7 +86,7 @@
                             <div class="col-sm-2">
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="membershipRadios"
+                                        <input type="radio" class="form-check-input" name="status"
                                             id="membershipRadios1" value="Tervalidasi"
                                             @if ($student['person']['status'] == 'Tervalidasi') checked @endif>
                                         Tervalidasi
@@ -90,7 +96,7 @@
                             <div class="col-sm-2">
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="membershipRadios"
+                                        <input type="radio" class="form-check-input" name="status"
                                             id="membershipRadios2" value="Pending"
                                             @if ($student['person']['status'] == 'Pending') checked @endif>
                                         Pending

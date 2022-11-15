@@ -24,7 +24,6 @@ class StudentFactory extends Factory
     {
         // $faker = Factory::create();
         return [
-            'id' => mt_rand(1,20),
             'nim' => mt_rand(000000000000001, 999999999999999),
             'nama' => $this->faker->name(),
             'gender' => Arr::random(['L', 'P']),

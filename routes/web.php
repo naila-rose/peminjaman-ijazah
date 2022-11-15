@@ -28,13 +28,12 @@ Route::get('login', function () {
 Route::get('register', function () {
     return view('admin/register');
 });
-Route::resource('student', StudentController::class);
+// Route::resource('student', StudentController::class);
 Route::get('student-add', [StudentController::class, 'create']);
-Route::POST('students', [StudentController::class, 'store']);
+Route::post('students', [StudentController::class, 'store']);
+Route::get('student/{id}/edit', [StudentController::class, 'edit']);
 Route::put('student/{id}', [StudentController::class, 'update']);
-// Route::get('student-delete/{id}', [StudentController::class, 'delete']);
 Route::delete('student-destroy/{id}', [StudentController::class, 'delete']);
-// Route::get('student/{id}', [StudentController::class, 'edit']);
 
 Route::get('main', function () {
     return view('admin/layouts/main');
