@@ -6,8 +6,6 @@ use App\Models\Person;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\StudentCreateRequest;
 
 class StudentController extends Controller
 {
@@ -61,13 +59,18 @@ class StudentController extends Controller
     {
         $rules = [
             // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'id_fakultas' => 'required',
-            'id_prodi' => 'required',
-            'gender' => 'required',
-            'hubungan' => 'required',
-            'tgl_pinjam' => 'required',
-            'tgl_kembali' => 'required',
-            'status' => 'required'
+            'nama'          => 'required',
+            'id_fakultas'   => 'required',
+            'id_prodi'      => 'required',
+            'gender'        => 'required',
+            'no_telp'       => 'required',
+            'ket'           => 'required',
+            'alamat'        => 'required',
+            'nama_peminjam' => 'required',
+            'gender'        => 'required',
+            'tgl_pinjam'    => 'required',
+            'tgl_kembali'   => 'required',
+            'status'        => 'required'
         ];
 
         if($request->nim != $student->nim){
@@ -76,10 +79,24 @@ class StudentController extends Controller
 
         $validatedData = $request->validate($rules);
 
-        $validatedData['id'] = auth()->user()->id;
-
         Student::where('id', $student->id)
-               ->update($validatedData);
+               ->update([
+                    'id_fakultas'   => $validatedData['id_fakultas'],
+                    'id_prodi'      => $validatedData['id_prodi'],
+                    'gender'        => $validatedData['gender'],
+                    'nama'          => $validatedData['nama'],
+                    'alamat'        => $validatedData['alamat']
+               ]);
+
+        Person::where('id', $student->id_person)
+               ->update([
+                    'nama_peminjam' => $validatedData['nama_peminjam'],
+                    'no_telp'       => $validatedData['no_telp'],
+                    'ket'           => $validatedData['ket'],
+                    'tgl_pinjam'    => $validatedData['tgl_pinjam'],
+                    'tgl_kembali'   => $validatedData['tgl_kembali'],
+                    'status'        => $validatedData['status'],
+               ]);
 
         if($student){
             Session::flash('status', 'success');
@@ -93,7 +110,7 @@ class StudentController extends Controller
     {
         $deleteStudent = Student::findOrFail($id);
         $idPerson      = $deleteStudent->id_person;
-        $deleteStudent->delete();
+        $deleteStudent ->delete();
         $deletePerson  = Person::destroy($idPerson);
 
         if($deletePerson){
@@ -103,5 +120,3 @@ class StudentController extends Controller
         return redirect('/student');
     }
 }
-
-// update -> belum bisa

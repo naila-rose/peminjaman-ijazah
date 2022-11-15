@@ -15,52 +15,67 @@
                                 value="{{ $student['nim'] }}" name="nim">
                                 @error('nim')
                                     <div class="text-danger">
-                                        
+                                        <span>{{ $message }}</span>
                                     </div>
                                 @enderror
                         </div>
                         <div class="form-group">
                             <label for="exampleInputName1">Nama</label>
-                            <input type="text" class="form-control" id="exampleInputName1" placeholder="Nama"
+                            <input type="text" class="form-control" id="exampleInputName1" placeholder="Nama" name="nama"
                                 value="{{ $student['nama'] }}">
                         </div>
                         <div class="form-group">
                             <label>Fakultas</label>
                             <select class="js-example-basic-single w-100" name="id_fakultas">
-                                <option value="">{{ $student['fakultas']['fakultas'] }}</option>
+                                <option value="{{ $student['fakultas']['id'] }}">{{ $student['fakultas']['fakultas'] }}</option>
                             </select>
+                            @error('id_fakultas')
+                                <div class="text-danger">
+                                    <span>{{ $message }}</span>
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Program Studi</label>
                             <select class="js-example-basic-single w-100" name="id_prodi">
-                                <option value="">{{ $student['prodi']['prodi'] }}</option>
+                                <option value="{{ $student['prodi']['id'] }}">{{ $student['prodi']['prodi'] }}</option>
                             </select>
+                            @error('id_prodi')
+                                <div class="text-danger">
+                                    <span>{{ $message }}</span>
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="exampleSelectGender">Jenis Kelamin</label>
                             <select class="js-example-basic-single w-100" id="exampleSelectGender" name="gender">
-                                <option @if ($student['gender'] == 'L') selected @endif>
+                                <option @if ($student['gender'] == 'L') selected value="{{ $student['gender'] }}" @endif>
                                     Laki-laki
                                 </option>
-                                <option @if ($student['gender'] == 'P') selected @endif>
+                                <option @if ($student['gender'] == 'P') value="{{ $student['gender'] }}" selected @endif>
                                     Perempuan
                                 </option>
                             </select>
+                            @error('gender')
+                            <div class="text-danger">
+                                <span>{{ $message }}</span>
+                            </div>
+                        @enderror
                         </div>
                         <div class="form-group">
                             <label for="exampleInputCity1">Alamat</label>
                             <input type="text" class="form-control" id="exampleInputCity1" placeholder="Alamat"
-                                value="{{ $student['alamat'] }}">
+                                value="{{ $student['alamat'] }}" name="alamat">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputName1">Nama Peminjam</label>
                             <input type="text" class="form-control" id="exampleInputName1" placeholder="Nama Peminjam"
-                                value="{{ $student['person']['nama_peminjam'] }}">
+                                value="{{ $student['person']['nama_peminjam'] }}" name="nama_peminjam">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputNomor2">Nomor Telepon Peminjam</label>
                             <input type="text" class="form-control" id="exampleInputNomor2"
-                                placeholder="Nomor Telepon Peminjam" value="{{ $student['person']['no_telp'] }}">
+                                placeholder="Nomor Telepon Peminjam" value="{{ $student['person']['no_telp'] }}" name="no_telp">
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">Tanggal Pinjam</label>
@@ -106,7 +121,7 @@
                             <div class="col-sm-2">
                                 <div class="form-check">
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="membershipRadios"
+                                        <input type="radio" class="form-check-input" name="status"
                                             id="membershipRadios2" value="Tidak Tervalidasi"
                                             @if ($student['person']['status'] == 'Tidak Tervalidasi') checked @endif>
                                         Tidak Tervalidasi
@@ -116,7 +131,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleTextarea1">Keterangan</label>
-                            <textarea class="form-control" id="exampleTextarea1" rows="4">{{ $student['person']['ket'] }}</textarea>
+                            <textarea class="form-control" id="exampleTextarea1" rows="4" name="ket">{{ $student['person']['ket'] }}</textarea>
                         </div>
                         <button type="submit" class="btn btn-primary mr-2" href="student">Update</button>
                         <button class="btn btn-light" href="student">Cancel</button>
