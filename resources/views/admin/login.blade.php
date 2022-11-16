@@ -36,10 +36,20 @@
               <h4>Halo! silahkan masuk</h4>
               <form class="pt-3">
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Username (NIP)" required>
+                  <input type="email" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Username (NIP)" name="nip" required>
+                  @error('nip')
+                  <div class="text-danger">
+                    <span>{{ $message }}</span>
+                  </div>
+                  @enderror
                 </div>
                 <div class="form-group">
-                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" required>
+                  <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" name="password" required>
+                  @error('password')
+                  <div class="text-danger">
+                    <span>{{ $message }}</span>
+                  </div>
+                  @enderror
                 </div>
                 <div class="mt-3">
                   <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="index">MASUK</a>

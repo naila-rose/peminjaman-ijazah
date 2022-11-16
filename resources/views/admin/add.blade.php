@@ -14,7 +14,7 @@
                             </ul>
                         </div>
                     @endif
-                    <form class="forms-sample" action="students" method="POST">
+                    <form class="forms-sample" action="students" method="POST" enctype="multipart/form-data">
                     @csrf
                         <div class="form-group">
                             <label for="exampleInputNIM1">NIM</label>
@@ -88,12 +88,12 @@
                             <input class="form-control" type="date" name="tgl_kembali"/>
                         </div>
                         <div class="form-group">
-                            <label>Upload File</label>
-                            <input type="file" name="img[]" class="file-upload-default">
+                            <label for="image">Upload File</label>
+                            <input type="file" name="image" class="file-upload-default">
                             <div class="input-group col-xs-12">
                                 <input type="text" class="form-control file-upload-info" disabled
                                     placeholder="Upload File">
-                                <span class="input-group-append">
+                                <span class="input-group-append" id="image" name="image">
                                     <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                 </span>
                             </div>

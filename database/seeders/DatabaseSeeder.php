@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             PersonSeeder::class,
             FakultasSeeder::class,
             ProdiSeeder::class,
-            StudentSeeder::class
+            StudentSeeder::class,
+            EmployeeSeeder::class
         ]);
     }
 }

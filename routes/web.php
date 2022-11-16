@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-// use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StudentController;
-// use App\Http\Controllers\PersonController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,16 +19,22 @@ use App\Http\Controllers\StudentController;
 Route::get('/', function () {
     return view('admin/login');
 });
-Route::get('index', function () {
-    return view('admin/index');
-});
-Route::get('login', function () {
-    return view('admin/login');
-});
-Route::get('register', function () {
-    return view('admin/register');
-});
-// Route::resource('student', StudentController::class);
+// Route::get('index', function () {
+//     return view('admin/index');
+// });
+Route::get('index', [StudentController::class, 'dashboard']);
+
+// Route::get('login', function () {
+//     return view('admin/login');
+// });
+Route::get('login', [LoginController::class, 'index']);
+Route::get('register', [RegisterController::class, 'index']);
+Route::post('register', [RegisterController::class, 'store']);
+
+// Route::get('register', function () {
+//     return view('admin/register');
+// });
+
 Route::get('student-add', [StudentController::class, 'create']);
 Route::post('students', [StudentController::class, 'store']);
 Route::get('student/{id}/edit', [StudentController::class, 'edit']);

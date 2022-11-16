@@ -50,10 +50,10 @@
                             <label for="exampleSelectGender">Jenis Kelamin</label>
                             <select class="js-example-basic-single w-100" id="exampleSelectGender" name="gender">
                                 <option @if ($student['gender'] == 'L') selected value="{{ $student['gender'] }}" @endif>
-                                    Laki-laki
+                                    L
                                 </option>
                                 <option @if ($student['gender'] == 'P') value="{{ $student['gender'] }}" selected @endif>
-                                    Perempuan
+                                    P
                                 </option>
                             </select>
                             @error('gender')
@@ -86,8 +86,8 @@
                             <input class="form-control" type="date"  name="tgl_kembali" value="{{ $student['person']['tgl_kembali'] }}" />
                         </div>
                         <div class="form-group">
-                            <label>Upload File</label>
-                            <input type="file" name="img[]" class="file-upload-default">
+                            <label for="image">Upload File</label>
+                            <input type="file" name="image" class="file-upload-default">
                             <div class="input-group col-xs-12">
                                 <input type="text" class="form-control file-upload-info" name="image" disabled
                                     placeholder="Upload File">

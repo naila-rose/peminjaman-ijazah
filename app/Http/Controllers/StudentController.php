@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Session;
 
 class StudentController extends Controller
 {
+    // public function dashboard()
+    // {
+    //     $mahasiswa = Student::orderBy('id', 'asc')->with('person','fakultas','prodi')->get();
+    //     return view('admin.index', compact('mahasiswa'));
+    // }
     public function index()
     {
         $student = Student::orderBy('id', 'asc')->with('person','fakultas','prodi')->get();
@@ -27,6 +32,8 @@ class StudentController extends Controller
     }
     public function store(Request $request)
     {
+        return $request->file('image')->store('post-images');
+
         $person = Person::create([
             'nama_peminjam' => $request->nama_peminjam,
             'no_telp'       => $request->no_telp,

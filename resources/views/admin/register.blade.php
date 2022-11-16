@@ -35,15 +35,30 @@
               <br><br><br>
               <h4>Silahkan daftar terlebih dahulu</h4>
               <h6 class="font-weight-light"></h6>
-              <form class="pt-3">
+              <form class="pt-3" action="register" method="POST" >
                 <div class="form-group">
                   <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="Username (NIP)" required>
+                  @error('nip')
+                  <div class="text-danger">
+                    <span>{{ $message }}</span>
+                  </div>
+                  @enderror
                 </div>
                 <div class="form-group">
                   <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email" required>
+                  @error('emai')
+                  <div class="text-danger">
+                    <span>{{ $message }}</span>
+                  </div>
+                  @enderror
                 </div>
                 <div class="form-group">
                   <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" required>
+                  @error('password')
+                  <div class="text-danger">
+                    <span>{{ $message }}</span>
+                  </div>
+                  @enderror
                 </div>
                 <div class="mb-4">
                   <div class="form-check">
