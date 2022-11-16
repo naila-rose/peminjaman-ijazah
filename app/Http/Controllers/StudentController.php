@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\Session;
 
 class StudentController extends Controller
 {
-    // public function dashboard()
-    // {
-    //     $mahasiswa = Student::orderBy('id', 'asc')->with('person','fakultas','prodi')->get();
-    //     return view('admin.index', compact('mahasiswa'));
-    // }
+    public function dashboard()
+    {
+        $mahasiswa = Student::orderBy('id', 'asc')->with('person','fakultas','prodi')->get();
+        return view('admin.index', compact('mahasiswa'));
+    }
     public function index()
     {
         $student = Student::orderBy('id', 'asc')->with('person','fakultas','prodi')->get();
@@ -127,3 +127,7 @@ class StudentController extends Controller
         return redirect('/student');
     }
 }
+
+// create + update + delete image
+// login + register
+// ambil data di halaman index belum bisa

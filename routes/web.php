@@ -27,8 +27,16 @@ Route::get('index', [StudentController::class, 'dashboard']);
 // Route::get('login', function () {
 //     return view('admin/login');
 // });
-Route::get('login', [LoginController::class, 'index']);
+// Route::get('login', [LoginController::class, 'index']);
+// Route::get('register', [RegisterController::class, 'index']);
+// Route::post('register', [RegisterController::class, 'store']);
+
+Route::get('login', [LoginController::class, 'index'])->name('login');
+Route::post('login', [LoginController::class, 'authenticate']);
+Route::post('logout', [LoginController::class, '__invoke'])->name('logout');
+
 Route::get('register', [RegisterController::class, 'index']);
+Route::get('register', [RegisterController::class, 'create']);
 Route::post('register', [RegisterController::class, 'store']);
 
 // Route::get('register', function () {

@@ -127,8 +127,8 @@
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
-                            {{-- <tbody>
-                                    @foreach ($mahasiswa as $data)
+                            <tbody>
+                                @foreach ($mahasiswa as $data)
                                     <tr>
                                         <td class="font-weight-bold">{{ $loop->iteration }}</td>
                                         <td class="font-weight-bold">{{ $data->nim }}</td>
@@ -147,19 +147,21 @@
                                         <td>{{ $data->person->tgl_pinjam }}</td>
                                         <td>{{ $data->person->tgl_kembali }}</td>
                                         <td>
-                                            <a href="/student/{{ $data->id }}/edit" id="edit" class="btn btn-warning">
+                                            <a href="/student/{{ $data->id }}/edit" id="edit"
+                                                class="btn btn-warning">
                                                 <i class="fas fa-edit"></i>
                                             </a>
                                             <form action="/student/{{ $data->id }}" method="post" class="d-inline">
                                                 @method('delete')
                                                 @csrf
-                                                <button class="btn btn-danger" id="hapus" onclick="return confirm('Apakah anda ingin menghapus data ini?')">
+                                                <button class="btn btn-danger" id="hapus"
+                                                    onclick="return confirm('Apakah anda ingin menghapus data ini?')">
                                                     <i class="fas fa-trash"></i></button>
                                             </form>
                                         </td>
-                                      </tr>
-                                    @endforeach
-                                  </tbody> --}}
+                                    </tr>
+                                @endforeach
+                            </tbody>
                         </table>
                     </div>
                 </div>

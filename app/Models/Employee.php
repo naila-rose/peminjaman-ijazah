@@ -10,4 +10,11 @@ class Employee extends Model
     use HasFactory;
 
     public $timestamps = false;
+    protected $guarded = ['id'];
+    protected $fillable = [
+        'nip',
+        'nama_pegawai',
+        'email',
+        'password',
+    ];
 }
