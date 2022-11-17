@@ -8,15 +8,8 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        // Employee::create([
-        //     'nip'            => $request->nip,
-        //     'nama_pegawai'   => $request->nama_pegawai,
-        //     'email'          => $request->email,
-        //     'password'       => $request->password,
-        // ]);
-
         return view('admin.login');
     }
     public function authenticate(Request $request){

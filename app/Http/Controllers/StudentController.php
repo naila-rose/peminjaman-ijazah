@@ -59,7 +59,7 @@ class StudentController extends Controller
         return redirect('/student');
     }
 
-    public function update(Request $request, Student $student)
+    public function update($id, Request $request)
     {
         $rules = [
             // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -71,35 +71,36 @@ class StudentController extends Controller
             'ket'           => 'required',
             'alamat'        => 'required',
             'nama_peminjam' => 'required',
-            'gender'        => 'required',
             'tgl_pinjam'    => 'required',
             'tgl_kembali'   => 'required',
             'status'        => 'required'
         ];
 
-        if ($request->nim != $student->nim) {
-            $rules['nim'] = 'required|unique:students|max:15';
-        }
+        // if ($request->nim != $student->nim) {
+        //     $rules['nim'] = 'required|unique:students|max:15';
+        // }
 
-        $validatedData = $request->validate($rules);
+        $request->validate($rules);
+
+        $student = Student::findOrFail($id);
 
         Student::where('id', $student->id)
             ->update([
-                'id_fakultas'   => $validatedData['id_fakultas'],
-                'id_prodi'      => $validatedData['id_prodi'],
-                'gender'        => $validatedData['gender'],
-                'nama'          => $validatedData['nama'],
-                'alamat'        => $validatedData['alamat']
+                'id_fakultas'   => $request->id_fakultas,
+                'id_prodi'      => $request->id_prodi,
+                'gender'        => $request->gender,
+                'nama'          => $request->nama,
+                'alamat'        => $request->alamat
             ]);
 
         Person::where('id', $student->id_person)
             ->update([
-                'nama_peminjam' => $validatedData['nama_peminjam'],
-                'no_telp'       => $validatedData['no_telp'],
-                'ket'           => $validatedData['ket'],
-                'tgl_pinjam'    => $validatedData['tgl_pinjam'],
-                'tgl_kembali'   => $validatedData['tgl_kembali'],
-                'status'        => $validatedData['status'],
+                'nama_peminjam' => $request->nama_peminjam,
+                'no_telp'       => $request->no_telp,
+                'ket'           => $request->ket,
+                'tgl_pinjam'    => $request->tgl_pinjam,
+                'tgl_kembali'   => $request->tgl_kembali,
+                'status'        => $request->status,
             ]);
 
         if ($student) {

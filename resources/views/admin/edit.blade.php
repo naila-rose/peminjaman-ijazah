@@ -5,14 +5,14 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Edit Data Peminjam</h4>
-                    <form class="forms-sample" form action="/student/{{ $student->id }}" method="POST">
+                    <form class="forms-sample" form action="/student/{{ $student->id }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
                         <div class="form-group">
                             <label for="exampleInputNIM1">NIM</label>
                             <input type="text" class="form-control" id="exampleInputNIM1" placeholder="NIM"
-                                value="{{ $student['nim'] }}" name="nim">
+                                value="{{ $student['nim'] }}" disabled>
                                 @error('nim')
                                     <div class="text-danger">
                                         <span>{{ $message }}</span>

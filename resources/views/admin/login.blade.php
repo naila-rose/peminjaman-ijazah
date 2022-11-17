@@ -70,17 +70,11 @@
                                             <span>{{ $message }}</span>
                                         </div>
                                     @enderror
-                                </div>
+                                </div>P
                                 <div class="mt-3">
                                     <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">MASUK</a>
                                 </div>
                                 <div class="my-2 d-flex justify-content-between align-items-center">
-                                    <div class="form-check">
-                                        <label class="form-check-label text-muted">
-                                            <input type="checkbox" class="form-check-input">
-                                            Ingat saya
-                                        </label>
-                                    </div>
                                     <a href="#" class="auth-link text-black">Lupa password?</a>
                                 </div>
                                 <div class="text-center mt-4 font-weight-light">

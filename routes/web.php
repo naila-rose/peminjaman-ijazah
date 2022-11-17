@@ -48,7 +48,7 @@ Route::get('student-add', [StudentController::class, 'create']);
 Route::post('students', [StudentController::class, 'store']);
 Route::get('student/{id}/edit', [StudentController::class, 'edit']);
 Route::put('student/{id}', [StudentController::class, 'update']);
-Route::delete('student-destroy/{id}', [StudentController::class, 'delete']);
+Route::delete('student/{id}', [StudentController::class, 'destroy']);
 
 Route::get('main', function () {
     return view('admin/layouts/main');

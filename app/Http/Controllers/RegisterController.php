@@ -14,11 +14,7 @@ class RegisterController extends Controller
     {
         return view('admin.register');
     }
-    // public function create(Request $request)
-    // {
-    //     $data = Employee::select('id','nama_pegawai')->get();
-    //     return view('admin.register', compact('data'));
-    // }
+    
     public function store(Request $request)
     {
         $pegawai = Employee::create([
