@@ -11,12 +11,12 @@ class StudentController extends Controller
 {
     public function dashboard()
     {
-        $mahasiswa = Student::orderBy('id', 'asc')->with('person','fakultas','prodi')->get();
+        $mahasiswa = Student::orderBy('id', 'asc')->with('person', 'fakultas', 'prodi')->get();
         return view('admin.index', compact('mahasiswa'));
     }
     public function index()
     {
-        $student = Student::orderBy('id', 'asc')->with('person','fakultas','prodi')->get();
+        $student = Student::orderBy('id', 'asc')->with('person', 'fakultas', 'prodi')->get();
         return view('admin.student', compact('student'));
     }
     public function edit($id)
@@ -26,14 +26,11 @@ class StudentController extends Controller
     }
     public function create(Request $request)
     {
-        $item = Student::with('person','fakultas','prodi')->get();
+        $item = Student::with('person', 'fakultas', 'prodi')->get();
         return view('admin.add', compact('item'));
-
     }
     public function store(Request $request)
     {
-        return $request->file('image')->store('post-images');
-
         $person = Person::create([
             'nama_peminjam' => $request->nama_peminjam,
             'no_telp'       => $request->no_telp,
@@ -54,7 +51,7 @@ class StudentController extends Controller
             'alamat'        => $request->alamat,
         ]);
 
-        if($person){
+        if ($person) {
             Session::flash('status', 'success');
             Session::flash('message', 'Data Berhasil Disimpan');
         }
@@ -80,32 +77,32 @@ class StudentController extends Controller
             'status'        => 'required'
         ];
 
-        if($request->nim != $student->nim){
+        if ($request->nim != $student->nim) {
             $rules['nim'] = 'required|unique:students|max:15';
         }
 
         $validatedData = $request->validate($rules);
 
         Student::where('id', $student->id)
-               ->update([
-                    'id_fakultas'   => $validatedData['id_fakultas'],
-                    'id_prodi'      => $validatedData['id_prodi'],
-                    'gender'        => $validatedData['gender'],
-                    'nama'          => $validatedData['nama'],
-                    'alamat'        => $validatedData['alamat']
-               ]);
+            ->update([
+                'id_fakultas'   => $validatedData['id_fakultas'],
+                'id_prodi'      => $validatedData['id_prodi'],
+                'gender'        => $validatedData['gender'],
+                'nama'          => $validatedData['nama'],
+                'alamat'        => $validatedData['alamat']
+            ]);
 
         Person::where('id', $student->id_person)
-               ->update([
-                    'nama_peminjam' => $validatedData['nama_peminjam'],
-                    'no_telp'       => $validatedData['no_telp'],
-                    'ket'           => $validatedData['ket'],
-                    'tgl_pinjam'    => $validatedData['tgl_pinjam'],
-                    'tgl_kembali'   => $validatedData['tgl_kembali'],
-                    'status'        => $validatedData['status'],
-               ]);
+            ->update([
+                'nama_peminjam' => $validatedData['nama_peminjam'],
+                'no_telp'       => $validatedData['no_telp'],
+                'ket'           => $validatedData['ket'],
+                'tgl_pinjam'    => $validatedData['tgl_pinjam'],
+                'tgl_kembali'   => $validatedData['tgl_kembali'],
+                'status'        => $validatedData['status'],
+            ]);
 
-        if($student){
+        if ($student) {
             Session::flash('status', 'success');
             Session::flash('message', 'Data Berhasil Diupdate');
         }
@@ -117,10 +114,10 @@ class StudentController extends Controller
     {
         $deleteStudent = Student::findOrFail($id);
         $idPerson      = $deleteStudent->id_person;
-        $deleteStudent ->delete();
+        $deleteStudent->delete();
         $deletePerson  = Person::destroy($idPerson);
 
-        if($deletePerson){
+        if ($deletePerson) {
             Session::flash('status', 'success');
             Session::flash('message', 'Hapus Data Berhasil');
         }
@@ -130,4 +127,4 @@ class StudentController extends Controller
 
 // create + update + delete image
 // login + register
-// ambil data di halaman index belum bisa
+// update + delete gk bisa

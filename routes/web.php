@@ -22,7 +22,6 @@ Route::get('/', function () {
 // Route::get('index', function () {
 //     return view('admin/index');
 // });
-Route::get('index', [StudentController::class, 'dashboard']);
 
 // Route::get('login', function () {
 //     return view('admin/login');
@@ -31,18 +30,20 @@ Route::get('index', [StudentController::class, 'dashboard']);
 // Route::get('register', [RegisterController::class, 'index']);
 // Route::post('register', [RegisterController::class, 'store']);
 
-Route::get('login', [LoginController::class, 'index'])->name('login');
+Route::get('login', [LoginController::class, 'index']);
 Route::post('login', [LoginController::class, 'authenticate']);
 Route::post('logout', [LoginController::class, '__invoke'])->name('logout');
 
 Route::get('register', [RegisterController::class, 'index']);
-Route::get('register', [RegisterController::class, 'create']);
 Route::post('register', [RegisterController::class, 'store']);
+
+Route::get('index', [StudentController::class, 'dashboard']);
 
 // Route::get('register', function () {
 //     return view('admin/register');
 // });
 
+Route::get('student', [StudentController::class, 'index']);
 Route::get('student-add', [StudentController::class, 'create']);
 Route::post('students', [StudentController::class, 'store']);
 Route::get('student/{id}/edit', [StudentController::class, 'edit']);
@@ -61,9 +62,6 @@ Route::get('/master', function () {
 //     return view('masterr');
 // });
 
- Route::get('/login', function (){
-    return view('user.login');
- });
 
  Route::get('/second', function () {
     return view('user.second');

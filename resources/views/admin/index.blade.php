@@ -106,7 +106,9 @@
                     <p class="card-title mb-0">Daftar Peminjam</p>
                     <button id="export" class="btn btn-primary" onclick="exportTableToCSV('peminjaman-ijazah.csv')"><i
                             class="fas fa-file-export"></i></button>
-                    <button id="plus" class="btn btn-primary"><i class="fas fa-plus"></i></button>
+                    <a href="student-add" id="plus" class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                    </a>
                     <div class="table-responsive">
                         @if (Session::has('status'))
                             <div class="alert alert-success" role="alert">

@@ -14,11 +14,11 @@ class RegisterController extends Controller
     {
         return view('admin.register');
     }
-    public function create(Request $request)
-    {
-        $data = Employee::select('id','nama_pegawai')->get();
-        return view('admin.register', compact('data'));
-    }
+    // public function create(Request $request)
+    // {
+    //     $data = Employee::select('id','nama_pegawai')->get();
+    //     return view('admin.register', compact('data'));
+    // }
     public function store(Request $request)
     {
         $pegawai = Employee::create([
@@ -31,11 +31,11 @@ class RegisterController extends Controller
         $validatedData = $request->validate([
             'nip'           => 'required|max 20',
             'nama_pegawai'  => 'required|max 100',
-            'email'         => 'required|email|unique:users',
-            'password'      => ['required', 'min:5', 'max:255']
+            'email'         => 'required|email|unique:register',
+            'password'      => 'required|min:5|max:255'
         ]);
 
-    $validatedData['password'] = Hash::make($validatedData['password']);
+        $validatedData['password'] = Hash::make($validatedData['password']);
 
         Employee::create($validatedData);
         if($pegawai){

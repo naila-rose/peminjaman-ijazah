@@ -51,7 +51,8 @@
                                     {{ session('delete') }}
                                 </div>
                             @endif
-                            <form class="pt-3">
+                            <form class="pt-3" action="login" method="post">
+                                @csrf
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-lg"
                                         id="exampleInputUsername1" placeholder="Username (NIP)" name="nip" required>
