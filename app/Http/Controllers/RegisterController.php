@@ -10,34 +10,64 @@ use Illuminate\Support\Facades\Session;
 
 class RegisterController extends Controller
 {
-    public function index()
+    public function register()
     {
-        return view('admin.register');
+        $data['title'] = 'Register';
+        return view('admin.register', $data);
     }
-    
-    public function store(Request $request)
-    {
-        $pegawai = Employee::create([
-            'nip'           => $request->nip,
-            'nama_pegawai'  => $request->nama_pegawai,
-            'email'         => $request->email,
-            'password'      => $request->password_hash
-        ]);
 
-        $validatedData = $request->validate([
+    public function register_action(Request $request)
+    {
+        $request->validate([
             'nip'           => 'required|max 20',
             'nama_pegawai'  => 'required|max 100',
-            'email'         => 'required|email|unique:register',
+            'email'         => 'required|email|unique:users',
             'password'      => 'required|min:5|max:255'
         ]);
 
-        $validatedData['password'] = Hash::make($validatedData['password']);
+        $employee = new Employee([
+            'nip'           => $request->nip,
+            'nama_pegawai'  => $request->nama_pegawai,
+            'email'         => $request->email,
+            'password'      => Hash::make($request->password),
+        ]);
+        $employee->save();
 
-        Employee::create($validatedData);
-        if($pegawai){
+        if ($employee) {
             Session::flash('status', 'success');
-            Session::flash('message', 'Registrasi anda telah berhasil. Silahkan login!!');
+            Session::flash('message', 'Registrasi berhasil. Silahkan login!');
         }
-        return redirect('login');
+
+        return redirect()->route('login');
     }
+    // public function index()
+    // {
+    //     return view('admin.register');
+    // }
+    
+    // public function store(Request $request)
+    // {
+    //     $pegawai = Employee::create([
+    //         'nip'           => $request->nip,
+    //         'nama_pegawai'  => $request->nama_pegawai,
+    //         'email'         => $request->email,
+    //         'password'      => $request->password_hash
+    //     ]);
+
+    //     $validatedData = $request->validate([
+    //         'nip'           => 'required|max 20',
+    //         'nama_pegawai'  => 'required|max 100',
+    //         'email'         => 'required|email|unique:register',
+    //         'password'      => 'required|min:5|max:255'
+    //     ]);
+
+    //     $validatedData['password'] = Hash::make($validatedData['password']);
+
+    //     Employee::create($validatedData);
+    //     if($pegawai){
+    //         Session::flash('status', 'success');
+    //         Session::flash('message', 'Registrasi anda telah berhasil. Silahkan login!!');
+    //     }
+    //     return redirect('login');
+    // }
 }

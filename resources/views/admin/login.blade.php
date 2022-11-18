@@ -26,7 +26,7 @@
                 <div class="row w-100 mx-0">
                     <div class="col-lg-4 mx-auto">
                         <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                            <br>
+                            <br><br>
                             <div class="brand-logo-UB">
                                 <img src="../../images/UB.png" alt="logo">
                                 <h5 class="font-weight-reguler-p">PEMINJAMAN I J A Z A H</h5>

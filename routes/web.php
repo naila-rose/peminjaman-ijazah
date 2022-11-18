@@ -30,8 +30,8 @@ Route::get('/', function () {
 // Route::get('register', [RegisterController::class, 'index']);
 // Route::post('register', [RegisterController::class, 'store']);
 
-Route::get('register', [LoginController::class, 'register'])->name('register');
-Route::post('register', [LoginController::class, 'register_action'])->name('register.action');
+Route::get('register', [RegisterController::class, 'register'])->name('register');
+Route::post('register', [RegisterController::class, 'register_action'])->name('register.action');
 Route::get('login', [LoginController::class, 'login'])->name('login');
 Route::post('login', [LoginController::class, 'login_action'])->name('login.action');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
