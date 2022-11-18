@@ -10,6 +10,7 @@ class Employee extends Model
     use HasFactory;
 
     public $timestamps = false;
+    protected $primarykey = 'id';
     protected $guarded = ['id'];
     protected $fillable = [
         'nip',

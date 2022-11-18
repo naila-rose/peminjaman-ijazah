@@ -34,28 +34,20 @@
                             </div>
                             <br><br><br>
                             <h4>Halo! silahkan masuk</h4>
-                            @if (session()->has('loginError'))
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    {{ session('loginError') }}
-                                </div>
+                            @if (session('success'))
+                                <p class="alert alert-success">{{ session('success') }}</p>
                             @endif
-
-                            @if (session()->has('success'))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    {{ session('success') }}
-                                </div>
+                            @if ($errors->any())
+                                @foreach ($errors->all() as $err)
+                                    <p class="alert alert-danger">{{ $err }}</p>
+                                @endforeach
                             @endif
-
-                            @if (session()->has('delete'))
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    {{ session('delete') }}
-                                </div>
-                            @endif
-                            <form class="pt-3" action="login" method="post">
+                            <form class="pt-3" action="{{ route('login.action') }}" method="post">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-lg"
-                                        id="exampleInputUsername1" placeholder="Username (NIP)" name="nip" required>
+                                    <input type="username" class="form-control form-control-lg"
+                                        id="exampleInputUsername1" placeholder="Username (NIP)" name="nip"
+                                        value="{{ old('nip') }}" required>
                                     @error('nip')
                                         <div class="text-danger">
                                             <span>{{ $message }}</span>
@@ -70,15 +62,13 @@
                                             <span>{{ $message }}</span>
                                         </div>
                                     @enderror
-                                </div>P
-                                <div class="mt-3">
-                                    <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">MASUK</a>
                                 </div>
-                                <div class="my-2 d-flex justify-content-between align-items-center">
-                                    <a href="#" class="auth-link text-black">Lupa password?</a>
+                                <div class="mt-3">
+                                    <a
+                                        class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">MASUK</a>
                                 </div>
                                 <div class="text-center mt-4 font-weight-light">
-                                    Belum punya akun? <a href="register" class="text-primary">Daftar</a>
+                                    Belum punya akun? <a href="{{ route('register') }}" class="text-primary">Daftar</a>
                                 </div>
                             </form>
                         </div>

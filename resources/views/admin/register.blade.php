@@ -33,6 +33,11 @@
                                 <h5 class="font-weight-reguler-r">UNIVERSITAS BRAWIJAYA</h5>
                             </div>
                             <br><br>
+                            @if ($errors->any())
+                                @foreach ($errors->all() as $err)
+                                    <p class="alert alert-danger">{{ $err }}</p>
+                                @endforeach
+                            @endif
                             @if (Session::has('status'))
                                 <div class="alert alert-success" role="alert">
                                     {{ Session::get('message') }}
@@ -41,11 +46,11 @@
                             <br>
                             <h4>Silahkan daftar terlebih dahulu</h4>
                             <h6 class="font-weight-light"></h6>
-                            <form class="pt-3" action="register" method="POST">
+                            <form class="pt-3" action="{{ route('register.action') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-lg" id="exampleInputNIP1"
-                                        name="nip" placeholder="NIP" required value="{{old('nip')}}">
+                                        name="nip" placeholder="NIP" required value="{{ old('nip') }}">
                                     @error('nip')
                                         <div class="text-danger">
                                             <span>{{ $message }}</span>
@@ -54,7 +59,8 @@
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-lg"
-                                        id="exampleInputUsername1" name="nama_pegawai" placeholder="Username" required value="{{old('nama_pegawai')}}">
+                                        id="exampleInputUsername1" name="nama_pegawai" placeholder="Username" required
+                                        value="{{ old('nama_pegawai') }}">
                                     @error('nama_pegawai')
                                         <div class="text-danger">
                                             <span>{{ $message }}</span>
@@ -63,7 +69,7 @@
                                 </div>
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-lg" id="exampleInputEmail1"
-                                        name="email" placeholder="Email" required value="{{old('email')}}">
+                                        name="email" placeholder="Email" required value="{{ old('email') }}">
                                     @error('emai')
                                         <div class="text-danger">
                                             <span>{{ $message }}</span>
@@ -77,7 +83,7 @@
                                         <div class="text-danger">
                                             <span>{{ $message }}</span>
                                         </div>
-                                    @enderror 
+                                    @enderror
                                 </div>
                                 <div class="mb-4">
                                     <div class="form-check">
@@ -88,10 +94,11 @@
                                     </div>
                                 </div>
                                 <div class="mt-3">
-                                    <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">DAFTAR</a>
+                                    <a
+                                        class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">DAFTAR</a>
                                 </div>
                                 <div class="text-center mt-4 font-weight-light">
-                                    Sudah punya akun? <a href="login" class="text-primary">Masuk</a>
+                                    Sudah punya akun? <a href="{{ route('login') }}" class="text-primary">Masuk</a>
                                 </div>
                             </form>
                         </div>

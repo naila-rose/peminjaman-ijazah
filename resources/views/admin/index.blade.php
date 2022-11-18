@@ -138,11 +138,9 @@
                                         <td>{{ $data->fakultas->fakultas }}</td>
                                         <td>{{ $data->prodi->prodi }}</td>
                                         <td class="font-weight-light">
-                                            @if ($data->person->status == 'Tervalidasi')
-                                                <div class="badge badge-success">Tervalidasi</div>
-                                            @elseif ($data->person->status == 'Pending')
+                                            @if ($data->person->status == 'Pending')
                                                 <div class="badge badge-warning">Pending</div>
-                                            @else
+                                            @elseif ($data->person->status == 'Tidak Tervalidasi')
                                                 <div class="badge badge-danger">Tidak Tervalidasi</div>
                                             @endif
                                         </td>

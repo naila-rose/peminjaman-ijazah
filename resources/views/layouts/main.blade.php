@@ -111,7 +111,7 @@
               <img src="{{ asset("images/faces/user.png") }}" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item" href="login">
+              <a class="dropdown-item" href="{{ route('logout') }}">
                 <i class="ti-power-off text-primary"></i>
                 Keluar
               </a>
