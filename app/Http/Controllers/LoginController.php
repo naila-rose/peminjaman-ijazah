@@ -7,13 +7,13 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function login()
+    public function index()
     {
         $data['title'] = 'Login';
         return view('admin.login', $data);
     }
 
-    public function login_action(Request $request)
+    public function login(Request $request)
     {
         $request->validate([
             'nip'       => 'required',
@@ -28,7 +28,7 @@ class LoginController extends Controller
             'password' => 'Wrong username or password',
         ]);
     }
-
+    
     public function logout(Request $request)
     {
         Auth::logout();

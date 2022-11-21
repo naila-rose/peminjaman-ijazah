@@ -10,13 +10,12 @@ use Illuminate\Support\Facades\Session;
 
 class RegisterController extends Controller
 {
-    public function register()
+    public function index()
     {
-        $data['title'] = 'Register';
-        return view('admin.register', $data);
+        return view('admin.register');
     }
 
-    public function register_action(Request $request)
+    public function register(Request $request)
     {
         $request->validate([
             'nip'           => 'required|max 20',
@@ -45,7 +44,7 @@ class RegisterController extends Controller
     //     return view('admin.register');
     // }
     
-    // public function store(Request $request)
+    // public function register(Request $request)
     // {
     //     $pegawai = Employee::create([
     //         'nip'           => $request->nip,

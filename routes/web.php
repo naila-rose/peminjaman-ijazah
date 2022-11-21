@@ -19,36 +19,14 @@ use App\Http\Controllers\RegisterController;
 Route::get('/', function () {
     return view('admin/login');
 });
-// Route::get('index', function () {
-//     return view('admin/index');
-// });
 
-// Route::get('login', function () {
-//     return view('admin/login');
-// });
-// Route::get('login', [LoginController::class, 'index']);
-// Route::get('register', [RegisterController::class, 'index']);
-// Route::post('register', [RegisterController::class, 'store']);
-
-Route::get('register', [RegisterController::class, 'register'])->name('register');
-Route::post('register', [RegisterController::class, 'register_action'])->name('register.action');
-Route::get('login', [LoginController::class, 'login'])->name('login');
-Route::post('login', [LoginController::class, 'login_action'])->name('login.action');
+Route::get('register', [RegisterController::class, 'index'])->name('index');
+Route::post('register', [RegisterController::class, 'register'])->name('register');
+Route::get('login', [LoginController::class, 'index'])->name('index');
+Route::post('login', [LoginController::class, 'login'])->name('login');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
-
-// Route::get('login', [LoginController::class, 'index']);
-// Route::post('login', [LoginController::class, 'authenticate']);
-// Route::post('logout', [LoginController::class, '__invoke'])->name('logout');
-
-// Route::get('register', [RegisterController::class, 'index']);
-// Route::post('register', [RegisterController::class, 'store']);
-
 Route::get('index', [StudentController::class, 'dashboard']);
-
-// Route::get('register', function () {
-//     return view('admin/register');
-// });
 
 Route::get('student', [StudentController::class, 'index']);
 Route::get('student-add', [StudentController::class, 'create']);

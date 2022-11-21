@@ -11,7 +11,7 @@ class StudentController extends Controller
 {
     public function dashboard()
     {
-        $mahasiswa = Student::orderBy('id', 'asc', 'status')->with('person', 'fakultas', 'prodi')->get();
+        $mahasiswa = Student::orderBy('id', 'asc')->with('person', 'fakultas', 'prodi')->get();
         return view('admin.index', compact('mahasiswa'));
     }
     public function index()
@@ -126,5 +126,9 @@ class StudentController extends Controller
     }
 }
 
+// admin
 // create + update + delete image
 // login + register
+
+// user
+// foto

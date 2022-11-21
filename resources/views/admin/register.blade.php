@@ -46,7 +46,7 @@
                             <br>
                             <h4>Silahkan daftar terlebih dahulu</h4>
                             <h6 class="font-weight-light"></h6>
-                            <form class="pt-3" action="{{ route('register.action') }}" method="POST">
+                            <form class="pt-3" form action="register" method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-lg" id="exampleInputNIP1"
@@ -98,7 +98,8 @@
                                         class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">DAFTAR</a>
                                 </div>
                                 <div class="text-center mt-4 font-weight-light">
-                                    Sudah punya akun? <a href="{{ route('login') }}" class="text-primary">Masuk</a>
+                                        Sudah punya akun? 
+                                    <a href="login" class="text-primary">Masuk</a>
                                 </div>
                             </form>
                         </div>

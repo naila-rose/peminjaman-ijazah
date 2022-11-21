@@ -42,11 +42,11 @@
                                     <p class="alert alert-danger">{{ $err }}</p>
                                 @endforeach
                             @endif
-                            <form class="pt-3" action="{{ route('login.action') }}" method="post">
+                            <form class="pt-3"  form action="login" method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <input type="username" class="form-control form-control-lg"
-                                        id="exampleInputUsername1" placeholder="Username (NIP)" name="nip"
+                                        id="exampleInputUsername1" placeholder="NIP" name="nip"
                                         value="{{ old('nip') }}" required>
                                     @error('nip')
                                         <div class="text-danger">
@@ -68,7 +68,7 @@
                                         class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">MASUK</a>
                                 </div>
                                 <div class="text-center mt-4 font-weight-light">
-                                    Belum punya akun? <a href="{{ route('register') }}" class="text-primary">Daftar</a>
+                                    Belum punya akun? <a href="register" class="text-primary">Daftar</a>
                                 </div>
                             </form>
                         </div>
