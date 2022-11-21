@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('nama_pegawai', 150)->required();
             $table->string('email');
             $table->string('password')->required();
+            $table->rememberToken();
         });
     }
 

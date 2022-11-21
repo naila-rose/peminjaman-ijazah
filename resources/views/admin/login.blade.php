@@ -33,10 +33,12 @@
                                 <h5 class="font-weight-reguler-r">UNIVERSITAS BRAWIJAYA</h5>
                             </div>
                             <br><br><br>
-                            <h4>Halo! silahkan masuk</h4>
-                            @if (session('success'))
-                                <p class="alert alert-success">{{ session('success') }}</p>
-                            @endif
+                            <h4>Silahkan masuk</h4>
+                            @if(Session::has('status'))
+                                <div class="alert alert-success" role="alert">
+                                    {{Session::get('message')}}
+                                </div>
+                                @endif
                             @if ($errors->any())
                                 @foreach ($errors->all() as $err)
                                     <p class="alert alert-danger">{{ $err }}</p>
@@ -64,8 +66,7 @@
                                     @enderror
                                 </div>
                                 <div class="mt-3">
-                                    <a
-                                        class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">MASUK</a>
+                                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">MASUK</button>
                                 </div>
                                 <div class="text-center mt-4 font-weight-light">
                                     Belum punya akun? <a href="register" class="text-primary">Daftar</a>

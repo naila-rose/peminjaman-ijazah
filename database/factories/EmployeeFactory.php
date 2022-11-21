@@ -24,7 +24,7 @@ class EmployeeFactory extends Factory
             'nip'           => mt_rand(000000000000001, 999999999999999),
             'nama_pegawai'  => $this->faker->name(),
             'email'         => $this->faker->email(),
-            'password'      => $this -> faker->text(6)
+            'password'      => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
         ];
     }
 }

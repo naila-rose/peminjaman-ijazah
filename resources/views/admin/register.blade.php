@@ -70,7 +70,7 @@
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-lg" id="exampleInputEmail1"
                                         name="email" placeholder="Email" required value="{{ old('email') }}">
-                                    @error('emai')
+                                    @error('email')
                                         <div class="text-danger">
                                             <span>{{ $message }}</span>
                                         </div>
@@ -94,8 +94,7 @@
                                     </div>
                                 </div>
                                 <div class="mt-3">
-                                    <a
-                                        class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">DAFTAR</a>
+                                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">DAFTAR</button>
                                 </div>
                                 <div class="text-center mt-4 font-weight-light">
                                         Sudah punya akun? 

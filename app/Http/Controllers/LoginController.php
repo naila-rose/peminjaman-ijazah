@@ -13,27 +13,52 @@ class LoginController extends Controller
         return view('admin.login', $data);
     }
 
-    public function login(Request $request)
-    {
-        $request->validate([
-            'nip'       => 'required',
-            'password'  => 'required',
+    public function login(Request $request){
+        $credentials = $request->validate([
+            'nip'      => ['required'],
+            'password' => ['required']
         ]);
-        if (Auth::attempt(['nip' => $request->nip, 'password' => $request->password])) {
+
+        if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('/');
+
+            return redirect()->intended('/index');
         }
 
-        return back()->withErrors([
-            'password' => 'Wrong username or password',
-        ]);
+        return back()->with('loginError', 'NIP atau password yang anda masukkan salah');
     }
-    
-    public function logout(Request $request)
-    {
+
+    public function logout(Request $request){
         Auth::logout();
+
         $request->session()->invalidate();
+
         $request->session()->regenerateToken();
-        return redirect('login');
+
+        return redirect('/login');
     }
+
+//     public function login(Request $request)
+//     {
+//         $request->validate([
+//             'nip'       => 'required',
+//             'password'  => 'required',
+//         ]);
+//         if (Auth::attempt(['nip' => $request->nip, 'password' => $request->password])) {
+//             $request->session()->regenerate();
+//             return redirect()->intended('/index');
+//         }
+
+//         return back()->withErrors([
+//             'password' => 'NIP atau password yang anda masukkan salah',
+//         ]);
+//     }
+
+//     public function logout(Request $request)
+//     {
+//         Auth::logout();
+//         $request->session()->invalidate();
+//         $request->session()->regenerateToken();
+//         return redirect('/login');
+//     }
 }
