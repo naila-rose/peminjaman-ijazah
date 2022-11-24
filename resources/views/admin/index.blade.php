@@ -66,7 +66,7 @@
                     <div class="card card-tale">
                         <div class="card-body">
                             <p class="mb-4">Jumlah Peminjam</p>
-                            <h1>250</h1>
+                            <h1>{{ $jumlah_peminjam }}</h1>
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                     <div class="card card-dark-blue">
                         <div class="card-body">
                             <p class="mb-4">Jumlah Tervalidasi</p>
-                            <h1>180</h1>
+                            <h1>{{ $jumlah_tervalidasi }}</h1>
                         </div>
                     </div>
                 </div>
@@ -84,7 +84,7 @@
                     <div class="card card-light-blue">
                         <div class="card-body">
                             <p class="mb-4">Jumlah Belum Tervalidasi</p>
-                            <h1>100</h1>
+                            <h1>{{ $jumlah_tak_tervalidasi }}</h1>
                         </div>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
                     <div class="card card-light-danger">
                         <div class="card-body">
                             <p class="mb-4">Jumlah Gagal Validasi</p>
-                            <h1>40</h1>
+                            <h1>{{ $jumlah_pending }}</h1>
                         </div>
                     </div>
                 </div>
@@ -138,9 +138,11 @@
                                         <td>{{ $data->fakultas->fakultas }}</td>
                                         <td>{{ $data->prodi->prodi }}</td>
                                         <td class="font-weight-light">
-                                            @if ($data->person->status == 'Pending')
+                                            @if ($data->person->status == 'Tervalidasi')
+                                                <div class="badge badge-success">Tervalidasi</div>
+                                            @elseif ($data->person->status == 'Pending')
                                                 <div class="badge badge-warning">Pending</div>
-                                            @elseif ($data->person->status == 'Tidak Tervalidasi')
+                                            @else
                                                 <div class="badge badge-danger">Tidak Tervalidasi</div>
                                             @endif
                                         </td>
