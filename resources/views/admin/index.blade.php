@@ -84,7 +84,7 @@
                     <div class="card card-light-blue">
                         <div class="card-body">
                             <p class="mb-4">Jumlah Belum Tervalidasi</p>
-                            <h1>{{ $jumlah_tak_tervalidasi }}</h1>
+                            <h1>{{ $jumlah_pending }}</h1>
                         </div>
                     </div>
                 </div>
@@ -92,7 +92,7 @@
                     <div class="card card-light-danger">
                         <div class="card-body">
                             <p class="mb-4">Jumlah Gagal Validasi</p>
-                            <h1>{{ $jumlah_pending }}</h1>
+                            <h1>{{ $jumlah_tak_tervalidasi }}</h1>
                         </div>
                     </div>
                 </div>
