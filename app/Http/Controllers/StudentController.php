@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Person;
+use App\Http\Requests\StudentCreateRequest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Models\Student;
-use Illuminate\Support\Facades\Session;
+use App\Models\Person;
+use Exception;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -33,79 +37,175 @@ class StudentController extends Controller
         $item = Student::with('person', 'fakultas', 'prodi')->get();
         return view('admin.add', compact('item'));
     }
-    public function store(Request $request)
+    public function store(StudentCreateRequest $request)
     {
-        $person = Person::create([
-            'nama_peminjam' => $request->nama_peminjam,
-            'no_telp'       => $request->no_telp,
-            'status'        => $request->status,
-            'hubungan'      => $request->hubungan,
-            'tgl_pinjam'    => $request->tgl_pinjam,
-            'tgl_kembali'   => $request->tgl_kembali,
-            'ket'           => $request->ket,
-        ]);
+        if ($request->has('image')) {
+            $image = $request->file('image');
+            $image_name = time() . '.jpg';
+            Storage::putFileAs('public/image/', $image, $image_name);
 
-        Student::create([
-            'nim'           => $request->nim,
-            'nama'          => $request->nama,
-            'id_fakultas'   => $request->id_fakultas,
-            'id_prodi'      => $request->id_prodi,
-            'id_person'     => $person->id,
-            'gender'        => $request->gender,
-            'alamat'        => $request->alamat,
-        ]);
-
-        if ($person) {
-            Session::flash('status', 'success');
-            Session::flash('message', 'Data Berhasil Disimpan');
-        }
-
-        return redirect('/student');
-    }
-
-    public function update($id, Request $request)
-    {
-        $rules = [
-            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'nama'          => 'required',
-            'id_fakultas'   => 'required',
-            'id_prodi'      => 'required',
-            'gender'        => 'required',
-            'no_telp'       => 'required',
-            'ket'           => 'required',
-            'alamat'        => 'required',
-            'nama_peminjam' => 'required',
-            'tgl_pinjam'    => 'required',
-            'tgl_kembali'   => 'required',
-            'status'        => 'required'
-        ];
-
-        // if ($request->nim != $student->nim) {
-        //     $rules['nim'] = 'required|unique:students|max:15';
-        // }
-
-        $request->validate($rules);
-
-        $student = Student::findOrFail($id);
-
-        Student::where('id', $student->id)
-            ->update([
-                'id_fakultas'   => $request->id_fakultas,
-                'id_prodi'      => $request->id_prodi,
-                'gender'        => $request->gender,
-                'nama'          => $request->nama,
-                'alamat'        => $request->alamat
-            ]);
-
-        Person::where('id', $student->id_person)
-            ->update([
+            $person = Person::create([
                 'nama_peminjam' => $request->nama_peminjam,
                 'no_telp'       => $request->no_telp,
-                'ket'           => $request->ket,
+                'status'        => $request->status,
+                'hubungan'      => $request->hubungan,
                 'tgl_pinjam'    => $request->tgl_pinjam,
                 'tgl_kembali'   => $request->tgl_kembali,
-                'status'        => $request->status,
+                'image'         => $image_name,
+                'ket'           => $request->ket,
             ]);
+
+            Student::create([
+                'nim'           => $request->nim,
+                'nama'          => $request->nama,
+                'id_fakultas'   => $request->id_fakultas,
+                'id_prodi'      => $request->id_prodi,
+                'id_person'     => $person->id,
+                'gender'        => $request->gender,
+                'alamat'        => $request->alamat,
+            ]);
+        } else {
+            $person = Person::create([
+                'nama_peminjam' => $request->nama_peminjam,
+                'no_telp'       => $request->no_telp,
+                'status'        => $request->status,
+                'hubungan'      => $request->hubungan,
+                'tgl_pinjam'    => $request->tgl_pinjam,
+                'tgl_kembali'   => $request->tgl_kembali,
+                'image'         => $request->image,
+                'ket'           => $request->ket,
+            ]);
+
+            Student::create([
+                'nim'           => $request->nim,
+                'nama'          => $request->nama,
+                'id_fakultas'   => $request->id_fakultas,
+                'id_prodi'      => $request->id_prodi,
+                'id_person'     => $person->id,
+                'gender'        => $request->gender,
+                'alamat'        => $request->alamat,
+            ]);
+        }
+
+        try {
+            if ($person) {
+                Session::flash('status', 'success');
+                Session::flash('message', 'Data Berhasil Disimpan');
+            }
+            return redirect('/student');
+
+        }catch (Exception $e){
+            return $this->error('Terjadi Kesalahan');
+        }
+
+        // return redirect('/student');
+    }
+
+    public function update($id, StudentCreateRequest $request)
+    {
+        // $student = Student::findOrFail($id);
+
+        // if ($request->has('image')) {
+        //     $picture = $student->image;
+        //     Person::destroy("public/image/" . $picture);
+
+        //     $image = $request->image;
+        //     $image_name = time() . '.jpg';
+        //     Storage::putFileAs('public/image/', $image, $image_name);
+        //     Student::where('id', $student->id)
+        //         ->update([
+        //             'id_fakultas'   => $request->id_fakultas,
+        //             'id_prodi'      => $request->id_prodi,
+        //             'gender'        => $request->gender,
+        //             'nama'          => $request->nama,
+        //             'alamat'        => $request->alamat
+        //         ]);
+
+        //     Person::where('id', $student->id_person)
+        //         ->update([
+        //             'nama_peminjam' => $request->nama_peminjam,
+        //             'no_telp'       => $request->no_telp,
+        //             'ket'           => $request->ket,
+        //             'tgl_pinjam'    => $request->tgl_pinjam,
+        //             'tgl_kembali'   => $request->tgl_kembali,
+        //             'image'         => $request->image,
+        //             'status'        => $request->status,
+        //         ]);
+        // } else {
+        //     Student::where('id', $student->id)
+        //         ->update([
+        //             'id_fakultas'   => $request->id_fakultas,
+        //             'id_prodi'      => $request->id_prodi,
+        //             'gender'        => $request->gender,
+        //             'nama'          => $request->nama,
+        //             'alamat'        => $request->alamat
+        //         ]);
+
+        //     Person::where('id', $student->id_person)
+        //         ->update([
+        //             'nama_peminjam' => $request->nama_peminjam,
+        //             'no_telp'       => $request->no_telp,
+        //             'ket'           => $request->ket,
+        //             'tgl_pinjam'    => $request->tgl_pinjam,
+        //             'tgl_kembali'   => $request->tgl_kembali,
+        //             'image'         => $request->image,
+        //             'status'        => $request->status,
+        //         ]);
+        // }
+
+        try {
+            $student = Student::findOrFail($id);
+
+        if ($request->has('image')) {
+            $picture = $student->image;
+            Person::destroy("public/image/" . $picture);
+
+            if(Storage::disk('local')->exists('public/image/' . $picture)){
+                Storage::delete('public/image/' . $picture);
+            }
+
+            $image_name = time() . '.jpg';
+            Storage::putFileAs('public/image/', $picture, $image_name);
+            Student::where('id', $student->id)
+                ->update([
+                    'id_fakultas'   => $request->id_fakultas,
+                    'id_prodi'      => $request->id_prodi,
+                    'gender'        => $request->gender,
+                    'nama'          => $request->nama,
+                    'alamat'        => $request->alamat
+                ]);
+
+            Person::where('id', $student->id_person)
+                ->update([
+                    'nama_peminjam' => $request->nama_peminjam,
+                    'no_telp'       => $request->no_telp,
+                    'ket'           => $request->ket,
+                    'tgl_pinjam'    => $request->tgl_pinjam,
+                    'tgl_kembali'   => $request->tgl_kembali,
+                    'image'         => $request->image,
+                    'status'        => $request->status,
+                ]);
+        } else {
+            Student::where('id', $student->id)
+                ->update([
+                    'id_fakultas'   => $request->id_fakultas,
+                    'id_prodi'      => $request->id_prodi,
+                    'gender'        => $request->gender,
+                    'nama'          => $request->nama,
+                    'alamat'        => $request->alamat
+                ]);
+
+            Person::where('id', $student->id_person)
+                ->update([
+                    'nama_peminjam' => $request->nama_peminjam,
+                    'no_telp'       => $request->no_telp,
+                    'ket'           => $request->ket,
+                    'tgl_pinjam'    => $request->tgl_pinjam,
+                    'tgl_kembali'   => $request->tgl_kembali,
+                    'image'         => $request->image,
+                    'status'        => $request->status,
+                ]);
+        }
 
         if ($student) {
             Session::flash('status', 'success');
@@ -113,25 +213,43 @@ class StudentController extends Controller
         }
 
         return redirect('/student');
+
+        }catch (Exception $e){
+            DB::rollback();
+            return $this->error('Terjadi Kesalahan');
+        }
     }
 
     public function destroy($id)
     {
-        $deleteStudent = Student::findOrFail($id);
-        $idPerson      = $deleteStudent->id_person;
-        $deleteStudent->delete();
-        $deletePerson  = Person::destroy($idPerson);
+        try{
+            DB::beginTransaction();
+            $deleteStudent = Student::findOrFail($id);
+            $idPerson      = $deleteStudent->id_person;
+            $deleteStudent->delete();
+            $deletePerson  = Person::destroy($idPerson);
+            if(Storage::disk('local')->exists('public/image/' . $deleteStudent->image)){
+                Storage::delete('public/image/' . $deleteStudent->image);
+            }
+            $deleteStudent->delete();
+            
+            DB::commit();
 
-        if ($deletePerson) {
-            Session::flash('status', 'success');
-            Session::flash('message', 'Hapus Data Berhasil');
+            if ($deletePerson) {
+                Session::flash('status', 'success');
+                Session::flash('message', 'Hapus Data Berhasil');
+            }
+            return redirect('/student');
+
+        }catch (Exception $e){
+            DB::rollback();
+            return $this->error('Terjadi Kesalahan');
         }
-        return redirect('/student');
     }
 }
 
 // admin
-// create + update + delete image
+// update + delete image
 
 // user
 // foto

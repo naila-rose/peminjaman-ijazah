@@ -16,6 +16,7 @@ class Person extends Model
         'hubungan',
         'tgl_pinjam',
         'tgl_kembali',
+        'image',
         'status',
         'ket',
     ];

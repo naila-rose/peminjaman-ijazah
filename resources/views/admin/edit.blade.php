@@ -5,29 +5,36 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Edit Data Peminjam</h4>
-                    <form class="forms-sample" form action="/student/{{ $student->id }}" method="POST" enctype="multipart/form-data">
+                    <form class="forms-sample" form action="/student/{{ $student->id }}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
                         <div class="form-group">
                             <label for="exampleInputNIM1">NIM</label>
                             <input type="text" class="form-control" id="exampleInputNIM1" placeholder="NIM"
-                                value="{{ $student['nim'] }}" disabled>
-                                @error('nim')
-                                    <div class="text-danger">
-                                        <span>{{ $message }}</span>
-                                    </div>
-                                @enderror
+                                value="{{ $student['nim'] }}" name="nim" disabled>
+                            @error('nim')
+                                <div class="text-danger">
+                                    <span>{{ $message }}</span>
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="exampleInputName1">Nama</label>
-                            <input type="text" class="form-control" id="exampleInputName1" placeholder="Nama" name="nama"
-                                value="{{ $student['nama'] }}">
+                            <input type="text" class="form-control" id="exampleInputName1" placeholder="Nama"
+                                name="nama" value="{{ $student['nama'] }}">
+                            @error('nama')
+                                <div class="text-danger">
+                                    <span>{{ $message }}</span>
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Fakultas</label>
                             <select class="js-example-basic-single w-100" name="id_fakultas">
-                                <option value="{{ $student['fakultas']['id'] }}">{{ $student['fakultas']['fakultas'] }}</option>
+                                <option value="{{ $student['fakultas']['id'] }}">{{ $student['fakultas']['fakultas'] }}
+                                </option>
                             </select>
                             @error('id_fakultas')
                                 <div class="text-danger">
@@ -57,10 +64,10 @@
                                 </option>
                             </select>
                             @error('gender')
-                            <div class="text-danger">
-                                <span>{{ $message }}</span>
-                            </div>
-                        @enderror
+                                <div class="text-danger">
+                                    <span>{{ $message }}</span>
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="exampleInputCity1">Alamat</label>
@@ -75,17 +82,24 @@
                         <div class="form-group">
                             <label for="exampleInputNomor2">Nomor Telepon Peminjam</label>
                             <input type="text" class="form-control" id="exampleInputNomor2"
-                                placeholder="Nomor Telepon Peminjam" value="{{ $student['person']['no_telp'] }}" name="no_telp">
+                                placeholder="Nomor Telepon Peminjam" value="{{ $student['person']['no_telp'] }}"
+                                name="no_telp">
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">Tanggal Pinjam</label>
-                            <input type="date" class="form-control" name="tgl_pinjam" value="{{ $student['person']['tgl_pinjam'] }}" />
+                            <input type="date" class="form-control" name="tgl_pinjam"
+                                value="{{ $student['person']['tgl_pinjam'] }}" />
                         </div>
                         <div class="form-group">
                             <label class="col-form-label">Tanggal Kembali</label>
-                            <input class="form-control" type="date"  name="tgl_kembali" value="{{ $student['person']['tgl_kembali'] }}" />
+                            <input class="form-control" type="date" name="tgl_kembali"
+                                value="{{ $student['person']['tgl_kembali'] }}" />
                         </div>
                         <div class="form-group">
+                            <div class="d-flex justify-content-center">
+                                <img src="{{ Storage::url('public/image/' . $student->person->image) }}"
+                                    style="max-height: 500px">
+                            </div>
                             <label for="image">Upload File</label>
                             <input type="file" name="image" class="file-upload-default">
                             <div class="input-group col-xs-12">
@@ -95,6 +109,11 @@
                                     <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                 </span>
                             </div>
+                            @error('image')
+                                <div class="text-danger">
+                                    <span>{{ $message }}</span>
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group row">
                             <label class="col-sm-3 col-form-label">Status</label>
@@ -128,10 +147,20 @@
                                     </label>
                                 </div>
                             </div>
+                            @error('status')
+                                <div class="text-danger">
+                                    <span>{{ $message }}</span>
+                                </div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="exampleTextarea1">Keterangan</label>
                             <textarea class="form-control" id="exampleTextarea1" rows="4" name="ket">{{ $student['person']['ket'] }}</textarea>
+                            @error('ket')
+                                <div class="text-danger">
+                                    <span>{{ $message }}</span>
+                                </div>
+                            @enderror
                         </div>
                         <button type="submit" class="btn btn-primary mr-2" href="student">Update</button>
                         <button class="btn btn-light" href="student">Cancel</button>

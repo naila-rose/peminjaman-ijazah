@@ -10,7 +10,7 @@
                           <div class="card-body">
                             <h3 class="card-title">Daftar Peminjam</h3>
                             <button id="export" class="btn btn-primary" onclick="exportTableToCSV('peminjaman-ijazah.csv')"><i class="fas fa-file-export"></i></button>
-                            <a href="student-add" id="plus" class="btn btn-primary">
+                            <a href="/student-add" id="plus" class="btn btn-primary">
                                 <i class="fas fa-plus"></i>
                             </a>
                             <div class="table-responsive">
