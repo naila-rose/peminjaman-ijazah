@@ -52,12 +52,12 @@ class StudentCreateRequest extends FormRequest
         return [
             'nim.required' => 'NIM wajib diisi',
             'nim.max' => 'NIM maksimal :max karakter',
-            'id_fakultas.required' => 'NIM wajib diisi',
-            'id_prodi.required' => 'NIM wajib diisi',
-            'gender.required' => 'NIM wajib diisi',
-            'tgl_pinjam.required' => 'NIM wajib diisi',
-            'tgl_kembali.required' => 'NIM wajib diisi',
-            'status.required' => 'NIM wajib diisi',
+            'id_fakultas.required' => 'Fakultas wajib diisi',
+            'id_prodi.required' => 'Prodi wajib diisi',
+            'gender.required' => 'Gender wajib diisi',
+            'tgl_pinjam.required' => 'Tanggal Pinjam wajib diisi',
+            'tgl_kembali.required' => 'Tanggal Kembali wajib diisi',
+            'status.required' => 'Status wajib diisi',
             'image.required' => 'Tidak dapat memuat file',
             'image.max' => 'Upload gambar maksimal 2MB'
         ];
