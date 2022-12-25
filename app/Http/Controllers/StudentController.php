@@ -103,69 +103,17 @@ class StudentController extends Controller
 
     public function update($id, StudentCreateRequest $request)
     {
-        // $student = Student::findOrFail($id);
-
-        // if ($request->has('image')) {
-        //     $picture = $student->image;
-        //     Person::destroy("public/image/" . $picture);
-
-        //     $image = $request->image;
-        //     $image_name = time() . '.jpg';
-        //     Storage::putFileAs('public/image/', $image, $image_name);
-        //     Student::where('id', $student->id)
-        //         ->update([
-        //             'id_fakultas'   => $request->id_fakultas,
-        //             'id_prodi'      => $request->id_prodi,
-        //             'gender'        => $request->gender,
-        //             'nama'          => $request->nama,
-        //             'alamat'        => $request->alamat
-        //         ]);
-
-        //     Person::where('id', $student->id_person)
-        //         ->update([
-        //             'nama_peminjam' => $request->nama_peminjam,
-        //             'no_telp'       => $request->no_telp,
-        //             'ket'           => $request->ket,
-        //             'tgl_pinjam'    => $request->tgl_pinjam,
-        //             'tgl_kembali'   => $request->tgl_kembali,
-        //             'image'         => $request->image,
-        //             'status'        => $request->status,
-        //         ]);
-        // } else {
-        //     Student::where('id', $student->id)
-        //         ->update([
-        //             'id_fakultas'   => $request->id_fakultas,
-        //             'id_prodi'      => $request->id_prodi,
-        //             'gender'        => $request->gender,
-        //             'nama'          => $request->nama,
-        //             'alamat'        => $request->alamat
-        //         ]);
-
-        //     Person::where('id', $student->id_person)
-        //         ->update([
-        //             'nama_peminjam' => $request->nama_peminjam,
-        //             'no_telp'       => $request->no_telp,
-        //             'ket'           => $request->ket,
-        //             'tgl_pinjam'    => $request->tgl_pinjam,
-        //             'tgl_kembali'   => $request->tgl_kembali,
-        //             'image'         => $request->image,
-        //             'status'        => $request->status,
-        //         ]);
-        // }
-
         try {
             $student = Student::findOrFail($id);
 
         if ($request->has('image')) {
-            $picture = $student->image;
-            Person::destroy("public/image/" . $picture);
-
-            if(Storage::disk('local')->exists('public/image/' . $picture)){
-                Storage::delete('public/image/' . $picture);
+            if(Storage::disk('local')->exists('public/image/' . $student->image)){
+                Storage::delete('public/image/' . $student->image);
             }
 
-            $image_name = time() . '.jpg';
-            Storage::putFileAs('public/image/', $picture, $image_name);
+            $imageFile = $request->file('image');
+            $image     = time() . '-' . $imageFile->getClientOriginalName();
+            Storage::putFileAs('public/image/', $imageFile, $image);
             Student::where('id', $student->id)
                 ->update([
                     'id_fakultas'   => $request->id_fakultas,
@@ -223,7 +171,6 @@ class StudentController extends Controller
     public function destroy($id)
     {
         try{
-            DB::beginTransaction();
             $deleteStudent = Student::findOrFail($id);
             $idPerson      = $deleteStudent->id_person;
             $deleteStudent->delete();
@@ -232,7 +179,7 @@ class StudentController extends Controller
                 Storage::delete('public/image/' . $deleteStudent->image);
             }
             $deleteStudent->delete();
-            
+
             DB::commit();
 
             if ($deletePerson) {
