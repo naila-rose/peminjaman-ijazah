@@ -173,7 +173,6 @@ class StudentController extends Controller
         try{
             $deleteStudent = Student::findOrFail($id);
             $idPerson      = $deleteStudent->id_person;
-            $deleteStudent->delete();
             $deletePerson  = Person::destroy($idPerson);
             if(Storage::disk('local')->exists('public/image/' . $deleteStudent->image)){
                 Storage::delete('public/image/' . $deleteStudent->image);
