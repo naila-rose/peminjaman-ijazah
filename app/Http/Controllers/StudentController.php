@@ -111,9 +111,9 @@ class StudentController extends Controller
                 Storage::delete('public/image/' . $student->image);
             }
 
-            $imageFile = $request->file('image');
-            $image     = time() . '-' . $imageFile->getClientOriginalName();
-            Storage::putFileAs('public/image/', $imageFile, $image);
+            $image = $request->file('image');
+            $image_name = time() . '.jpg';
+            Storage::putFileAs('public/image/', $image, $image_name);
             Student::where('id', $student->id)
                 ->update([
                     'id_fakultas'   => $request->id_fakultas,
@@ -130,7 +130,7 @@ class StudentController extends Controller
                     'ket'           => $request->ket,
                     'tgl_pinjam'    => $request->tgl_pinjam,
                     'tgl_kembali'   => $request->tgl_kembali,
-                    'image'         => $request->image,
+                    'image'         => $image_name,
                     'status'        => $request->status,
                 ]);
         } else {
@@ -150,7 +150,6 @@ class StudentController extends Controller
                     'ket'           => $request->ket,
                     'tgl_pinjam'    => $request->tgl_pinjam,
                     'tgl_kembali'   => $request->tgl_kembali,
-                    'image'         => $request->image,
                     'status'        => $request->status,
                 ]);
         }
@@ -171,7 +170,8 @@ class StudentController extends Controller
     public function destroy($id)
     {
         try{
-            $deleteStudent = Student::findOrFail($id);
+            // $deleteStudent = Student::findOrFail($id);
+            $deleteStudent = Student::where('id', $id)->first();
             $idPerson      = $deleteStudent->id_person;
             $deletePerson  = Person::destroy($idPerson);
             if(Storage::disk('local')->exists('public/image/' . $deleteStudent->image)){
@@ -195,7 +195,7 @@ class StudentController extends Controller
 }
 
 // admin
-// update + delete image
+// delete image
 
 // user
 // foto
