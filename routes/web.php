@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\Master\MasterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,9 +40,8 @@ Route::get('main', function () {
     return view('admin/layouts/main');
 });
 
-Route::get('/master', function () {
-    return view('user.master');
-});
+Route::get('/master', [MasterController::class, 'index']);
+Route::post('/master', [MasterController::class, 'checkNim']);
 
 // Route::get('/masterr', function () {
 //     return view('masterr');

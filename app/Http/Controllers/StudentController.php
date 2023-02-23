@@ -172,11 +172,11 @@ class StudentController extends Controller
         try{
             // $deleteStudent = Student::findOrFail($id);
             $deleteStudent = Student::where('id', $id)->first();
-            $idPerson      = $deleteStudent->id_person;
-            $deletePerson  = Person::destroy($idPerson);
-            if(Storage::disk('local')->exists('public/image/' . $deleteStudent->image)){
-                Storage::delete('public/image/' . $deleteStudent->image);
+            $idPerson      = Person::where('id', $deleteStudent->id_person)->first();
+            if(Storage::disk('local')->exists('public/image/' . $idPerson->image)){
+                Storage::delete('public/image/' . $idPerson->image);
             }
+            $deletePerson  = Person::destroy($idPerson);
             $deleteStudent->delete();
 
             DB::commit();
@@ -195,7 +195,6 @@ class StudentController extends Controller
 }
 
 // admin
-// delete image
 
 // user
 // foto

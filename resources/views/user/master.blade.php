@@ -18,7 +18,8 @@
 	</head>
 	<body>
 		<div class="wrapper">
-            <form action="" id="wizard">
+            <form action="" method="post" id="wizard">
+				@csrf
         		<!-- SECTION 1 -->
                 <h2></h2>
                 <section>
@@ -33,53 +34,43 @@
 							<p>Input Data Ijazah</p>
 
                             <div class="form-holder">
-                                <button class="search-nim btn btn-primary">Cek NIM</button>
+                                <button class="search-nim btn btn-primary" type="submit">Cek NIM</button>
                             </div>
 
 							<div class="form-row">
 								<div class="form-holder w-100">
-									<input type="text" placeholder="Masukkan NIM" class="form-control">
+									<input type="text" placeholder="Masukkan NIM" name="nim" class="form-control"
+									value="{{ $studentData->nim ?? '' }}">
 								</div>
 							</div>
 
 							<div class="form-row">
 								<div class="form-holder">
-									<input type="text" placeholder="Nama" class="form-control" @disabled(true)>
+									<input type="text" placeholder="Nama" class="form-control" @disabled(true) 
+									value="{{ $studentData->nama ?? '' }}">
 							    </div>
 
 							    <div class="form-holder">
-									<input type="text" placeholder="Tempat, Tanggal lahir" class="form-control" @disabled(true)>
+									<input type="text" placeholder="Alamat" class="form-control" @disabled(true)
+									value="{{ $studentData->alamat ?? '' }}">
 							    </div>
 						    </div>
 
 							<div class="form-row">
 								<div class="form-holder">
-									<input type="text" placeholder="Fakultas" class="form-control" @disabled(true)>
+									<input type="text" placeholder="Fakultas" class="form-control" @disabled(true)
+									value="{{ $studentData->fakultas->fakultas ?? '' }}">
 								</div>
 
 								<div class="form-holder">
-									<input type="text" placeholder="Program Studi" class="form-control" @disabled(true)>
+									<input type="text" placeholder="Program Studi" class="form-control" @disabled(true)
+									value="{{ $studentData->prodi->prodi ?? '' }}">
 								</div>
 							</div>
 
-							<div class="form-row">
-								<div class="form-holder" style="align-self: flex-end; transform: translateY(4px);">
-									<div class="checkbox-tick">
-										<label class="male">
-											<input type="radio" name="gender" value="male" @disabled(true)> Laki<br>
-											<span class="checkmark"></span>
-										</label>
-
-										<label class="female">
-											<input type="radio" name="gender" value="female" @disabled(true)> Perempuan<br>
-											<span class="checkmark"></span>
-										</label>
-									</div>
-								</div>
-							</div>
 							<br>
 							<div class="form-group">
-								<button class="next-step btn btn-primary font-size-h6">Selanjutnya</button>
+								<a class="next-step btn btn-primary font-size-h6" href="second">Selanjutnya</a>
 							</div>
 						</div>
 					</div>

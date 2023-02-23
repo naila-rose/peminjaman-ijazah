@@ -60,7 +60,7 @@
 							</div>
 							<br>
 							<div class="form-group">
-								<button class="next-step btn btn-primary font-size-h6">Selanjutnya</button>
+								<a class="next-step btn btn-primary font-size-h6" href="tri">Selanjutnya</a>
 							</div>
 						</div>
 					</div>
