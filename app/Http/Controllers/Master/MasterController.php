@@ -19,4 +19,21 @@ class MasterController extends Controller
         $studentData = Student::where('nim', $request->nim)->first();
         return view('user.master', compact('studentData'));
     }
+
+    public function afterCheckNIM(Request $request)
+    {
+        return view('user.second');
+    }
+
+    public function dataPeminjam(Request $request)
+    {
+        session()->put('peminjam', $request->except('_token'));
+        return view('user.tri');
+    }
+
+    public function save(Request $request)
+    {
+        
+    }
 }
+

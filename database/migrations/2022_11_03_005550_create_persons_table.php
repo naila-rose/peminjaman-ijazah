@@ -18,11 +18,12 @@ return new class extends Migration
             $table->string('nama_peminjam', 150);
             $table->string('no_telp', 50);
             $table->string('hubungan', 50);
-            $table->date('tgl_pinjam');
-            $table->date('tgl_kembali');
+            $table->date('tgl_pinjam')->nullable();
+            $table->date('tgl_kembali')->nullable();
             $table->string('image', 255)->nullable();
-            $table->string('status', 50);
-            $table->string('ket', 250);
+            $table->string('status', 50)->nullable();
+            $table->string('ket', 250)->nullable();
+            $table->boolean('surat_kuasa')->nullable();
             $table->timestamps();
         });
     }

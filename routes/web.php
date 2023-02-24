@@ -42,6 +42,7 @@ Route::get('main', function () {
 
 Route::get('/master', [MasterController::class, 'index']);
 Route::post('/master', [MasterController::class, 'checkNim']);
+Route::post('/second', [MasterController::class, 'dataPeminjam']);
 
 // Route::get('/masterr', function () {
 //     return view('masterr');

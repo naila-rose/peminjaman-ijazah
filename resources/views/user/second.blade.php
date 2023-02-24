@@ -12,10 +12,13 @@
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 		<link rel="shortcut icon" href="images/UB.png" />
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 	</head>
 	<body>
 		<div class="wrapper">
-            <form action="" id="wizard">
+            <form action="/second" method="POST" id="wizard">
+				@csrf
 
 				<!-- SECTION 2 -->
                 <h2></h2>
@@ -31,15 +34,33 @@
 							<p>Upload Data Peminjaman</p>
 							<div class="form-row">
 								<div class="form-holder w-100">
-									<input type="text" placeholder="Nama" class="form-control">
+									<input type="text" placeholder="Nama" class="form-control" name="nama_peminjam">
 								</div>
 							</div>
 							<div class="form-row">
 								<div class="form-holder w-100">
-									<input type="text" placeholder="Nomor Telepon" class="form-control">
+									<input type="text" placeholder="Nomor Telepon" class="form-control" name="no_telp">
 								</div>
 							</div>
-							<div class="form-row">
+							<div class="row">
+								<div class="col">
+									<div class="form-check">
+										<input class="form-check-input" type="radio" name="hubungan" id="flexRadioDefault1" value="Yang Bersangkutan">
+										<label class="form-check-label" for="flexRadioDefault1">
+											Yang Bersangkutan
+										</label>
+									  </div>									  
+								</div>
+								<div class="col">
+									<div class="form-check">
+										<input class="form-check-input" type="radio" name="hubungan" id="flexRadioDefault2" value="Anggota Keluarga/Teman">
+										<label class="form-check-label" for="flexRadioDefault2">
+										  Anggota Keluarga/Teman
+										</label>
+									  </div>
+								</div>
+							</div>
+							{{-- <div class="form-row">
 								<div class="select">
 									<div class="form-holder">
 										<div class="select-control">Hubungan</div>
@@ -51,16 +72,31 @@
 									</ul>
 								</div>
 								<div class="form-holder"></div>
-							</div>
-							<div class="checkbox-circle mt-24">
+							</div> --}}
+							<br>
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" name="surat_kuasa" id="flexRadioDefault1">
+								<label class="form-check-label" for="flexRadioDefault1">
+								  Sudah melampirkan Surat Kuasa?
+								</label>
+							  </div>
+							{{-- <div class="mt-24">
 								<label>
 									<input type="checkbox" ><a href="#">Sudah melampirkan surat kuasa?</a>
 									<span class="checkmark"></span>
 								</label>
-							</div>
+							</div> --}}
 							<br>
+							<style>
+								.btn-primary {background-color:#453e79}
+								.btn-primary:hover {background-color: #161942}
+								.next-step 
+									{padding: 15px;
+									border-radius: 7px;
+									cursor: pointer;}
+							</style>
 							<div class="form-group">
-								<a class="next-step btn btn-primary font-size-h6" href="tri">Selanjutnya</a>
+								<button type="submit" class="next-step btn btn-primary font-size-h6">Selanjutnya</button>
 							</div>
 						</div>
 					</div>
@@ -74,6 +110,23 @@
 		<!-- JQUERY STEP -->
 		<script src="js/jquery.steps.js"></script>
         <script src="js/main.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 		<!-- Template created and distributed by Colorlib -->
-</body>
+		{{-- <script>
+			const hubungan = document.getElementById('hubungan')
+			const hubungan1 = document.getElementById('hubungan1')
+			const hubungan2 = document.getElementById('hubungan2')
+
+			function hub1 (){
+				console.log('masuk hub 1')
+				console.log(hubungan1.innerHTML)
+				console.log(hubungan.innerText)
+				hubungan.innerText = hubungan1.innerHTML
+			}
+			function hub2 (){
+				console.log('masuk hub 2')
+				hubungan.innerHTML = hubungan2.innerHTML
+			}
+		</script> --}}
+	</body>
 </html>
