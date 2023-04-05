@@ -36,7 +36,7 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="index"><img src="{{ asset("images/logo3.png") }}" class="mr-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo mr-5" href="index"><img src="{{ asset("images/Logo1.png") }}" class="mr-2" alt="logo"/></a>
         <a class="navbar-brand brand-logo-mini" href="index"><img src="{{ asset("images/logo-mini.png") }}" alt="logo"/></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -58,7 +58,7 @@
           </li>
         </ul> --}}
         <ul class="navbar-nav navbar-nav-right">
-          {{-- <li class="nav-item dropdown">
+          <li class="nav-item dropdown">
             <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
               <i class="icon-bell mx-0"></i>
               <span class="count"></span>
@@ -105,7 +105,7 @@
                 </div>
               </a>
             </div>
-          </li> --}}
+          </li>
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
               <img src="{{ asset("images/faces/user.png") }}" alt="profile"/>
@@ -166,6 +166,30 @@
               </ul>
             </div>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+              <i class="icon-columns menu-icon"></i>
+              <span class="menu-title">Riwayat</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="form-elements">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="riwayat">Riwayat</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+              <i class="icon-head menu-icon"></i>
+              <span class="menu-title">Kelola Admin</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="auth">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="kelola_admin">Kelola Admin</a></li>
+              </ul>
+            </div>
+          </li>
         </ul>
       </nav>
       <!-- partial -->
@@ -176,7 +200,7 @@
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2022 <a href="http://bak.ub.ac.id/" target="_blank">Direktorat Administrasi dan Layanan Akademik</a>. All rights reserved.</span>
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2022 <a href="https://akademik.ub.ac.id/" target="_blank">Direktorat Administrasi dan Layanan Akademik</a>. All rights reserved.</span>
           </div>
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
             <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">From <a href="https://ub.ac.id/" target="_blank">Universitas Brawijaya</a></span>

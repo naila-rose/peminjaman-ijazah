@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\WebcamController;
 use App\Http\Controllers\Master\MasterController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,24 +41,27 @@ Route::delete('student/{id}', [StudentController::class, 'destroy']);
 Route::get('main', function () {
     return view('admin/layouts/main');
 });
+Route::get('riwayat', function () {
+    return view('admin/riwayat');
+});
+Route::get('kelola_admin', function () {
+    return view('admin/kelola_admin');
+});
 
 Route::get('/master', [MasterController::class, 'index']);
 Route::post('/master', [MasterController::class, 'checkNim']);
-Route::post('/second', [MasterController::class, 'dataPeminjam']);
+Route::post('/second', [MasterController::class, 'secondPage']);
+Route::post('/third', [MasterController::class, 'dataPeminjam']);
 
-// Route::get('/masterr', function () {
-//     return view('masterr');
-// });
-
-
- Route::get('/second', function () {
-    return view('user.second');
-});
-
-Route::get('/tri', function () {
-    return view('user.tri');
-});
+// store photo peminjam
+Route::post('webcam', [MasterController::class, 'store'])->name('webcam.capture');
 
 Route::get('/insert-sql', [MahasiswaController::class,'insertSql']);
 
 Route::get('/user.master', [MahasiswaController::class,'getView']);
+
+
+Route::get('webcam', [WebcamController::class, 'index']);
+Route::get('submit', function () {
+    return view('user/submit');
+});

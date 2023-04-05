@@ -17,11 +17,11 @@
 	</head>
 	<body>
 		<div class="wrapper">
-            <form action="/second" method="POST" id="wizard">
+            <form action="/third" method="POST" id="wizard">
 				@csrf
-
 				<!-- SECTION 2 -->
                 <h2></h2>
+
                 <section>
                     <div class="inner">
 						<div class="image-holder">
@@ -45,16 +45,16 @@
 							<div class="row">
 								<div class="col">
 									<div class="form-check">
-										<input class="form-check-input" type="radio" name="hubungan" id="flexRadioDefault1" value="Yang Bersangkutan">
-										<label class="form-check-label" for="flexRadioDefault1">
+										<input class="form-check-input" type="radio" name="hubungan" id="yang_bersangkutan" value="Yang Bersangkutan">
+										<label class="form-check-label" for="yang_bersangkutan">
 											Yang Bersangkutan
 										</label>
-									  </div>									  
+									  </div>
 								</div>
 								<div class="col">
 									<div class="form-check">
-										<input class="form-check-input" type="radio" name="hubungan" id="flexRadioDefault2" value="Anggota Keluarga/Teman">
-										<label class="form-check-label" for="flexRadioDefault2">
+										<input class="form-check-input" type="radio" name="hubungan" id="keluarga_teman" value="Anggota Keluarga/Teman">
+										<label class="form-check-label" for="keluarga_teman">
 										  Anggota Keluarga/Teman
 										</label>
 									  </div>
@@ -75,22 +75,16 @@
 							</div> --}}
 							<br>
 							<div class="form-check">
-								<input class="form-check-input" type="checkbox" name="surat_kuasa" id="flexRadioDefault1">
-								<label class="form-check-label" for="flexRadioDefault1">
+								<input class="form-check-input" type="checkbox" name="surat_kuasa" id="surat_kuasa">
+								<label class="form-check-label" for="surat_kuasa">
 								  Sudah melampirkan Surat Kuasa?
 								</label>
 							  </div>
-							{{-- <div class="mt-24">
-								<label>
-									<input type="checkbox" ><a href="#">Sudah melampirkan surat kuasa?</a>
-									<span class="checkmark"></span>
-								</label>
-							</div> --}}
 							<br>
 							<style>
 								.btn-primary {background-color:#453e79}
 								.btn-primary:hover {background-color: #161942}
-								.next-step 
+								.next-step
 									{padding: 15px;
 									border-radius: 7px;
 									cursor: pointer;}
@@ -111,22 +105,5 @@
 		<script src="js/jquery.steps.js"></script>
         <script src="js/main.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-		<!-- Template created and distributed by Colorlib -->
-		{{-- <script>
-			const hubungan = document.getElementById('hubungan')
-			const hubungan1 = document.getElementById('hubungan1')
-			const hubungan2 = document.getElementById('hubungan2')
-
-			function hub1 (){
-				console.log('masuk hub 1')
-				console.log(hubungan1.innerHTML)
-				console.log(hubungan.innerText)
-				hubungan.innerText = hubungan1.innerHTML
-			}
-			function hub2 (){
-				console.log('masuk hub 2')
-				hubungan.innerHTML = hubungan2.innerHTML
-			}
-		</script> --}}
 	</body>
 </html>

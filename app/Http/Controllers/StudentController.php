@@ -42,7 +42,7 @@ class StudentController extends Controller
         if ($request->has('image')) {
             $image = $request->file('image');
             $image_name = time() . '.jpg';
-            Storage::putFileAs('public/image/', $image, $image_name);
+            Storage::putFileAs('public/uploads/images/', $image, $image_name);
 
             $person = Person::create([
                 'nama_peminjam' => $request->nama_peminjam,
@@ -93,75 +93,73 @@ class StudentController extends Controller
                 Session::flash('message', 'Data Berhasil Disimpan');
             }
             return redirect('/student');
-
-        }catch (Exception $e){
+        } catch (Exception $e) {
             return $this->error('Terjadi Kesalahan');
         }
 
         // return redirect('/student');
     }
 
-    public function update($id, StudentCreateRequest $request)
+    public function update($id, Request $request)
     {
         try {
             $student = Student::findOrFail($id);
 
-        if ($request->has('image')) {
-            if(Storage::disk('local')->exists('public/image/' . $student->image)){
-                Storage::delete('public/image/' . $student->image);
+            if ($request->has('image')) {
+                if (Storage::disk('local')->exists('public/uploads/images/' . $student->image)) {
+                    Storage::delete('public/uploads/images/' . $student->image);
+                }
+
+                $image = $request->file('image');
+                $image_name = time() . '.jpg';
+                Storage::putFileAs('public/uploads/images/', $image, $image_name);
+                Student::where('id', $student->id)
+                    ->update([
+                        'id_fakultas'   => $request->id_fakultas,
+                        'id_prodi'      => $request->id_prodi,
+                        'gender'        => $request->gender,
+                        'nama'          => $request->nama,
+                        'alamat'        => $request->alamat
+                    ]);
+
+                Person::where('id', $student->id_person)
+                    ->update([
+                        'nama_peminjam' => $request->nama_peminjam,
+                        'no_telp'       => $request->no_telp,
+                        'ket'           => $request->ket,
+                        'tgl_pinjam'    => $request->tgl_pinjam,
+                        'tgl_kembali'   => $request->tgl_kembali,
+                        'image'         => $image_name,
+                        'status'        => $request->status,
+                    ]);
+            } else {
+                Student::where('id', $student->id)
+                    ->update([
+                        'id_fakultas'   => $request->id_fakultas,
+                        'id_prodi'      => $request->id_prodi,
+                        'gender'        => $request->gender,
+                        'nama'          => $request->nama,
+                        'alamat'        => $request->alamat
+                    ]);
+
+                Person::where('id', $student->id_person)
+                    ->update([
+                        'nama_peminjam' => $request->nama_peminjam,
+                        'no_telp'       => $request->no_telp,
+                        'ket'           => $request->ket,
+                        'tgl_pinjam'    => $request->tgl_pinjam,
+                        'tgl_kembali'   => $request->tgl_kembali,
+                        'status'        => $request->status,
+                    ]);
             }
 
-            $image = $request->file('image');
-            $image_name = time() . '.jpg';
-            Storage::putFileAs('public/image/', $image, $image_name);
-            Student::where('id', $student->id)
-                ->update([
-                    'id_fakultas'   => $request->id_fakultas,
-                    'id_prodi'      => $request->id_prodi,
-                    'gender'        => $request->gender,
-                    'nama'          => $request->nama,
-                    'alamat'        => $request->alamat
-                ]);
+            if ($student) {
+                Session::flash('status', 'success');
+                Session::flash('message', 'Data Berhasil Diupdate');
+            }
 
-            Person::where('id', $student->id_person)
-                ->update([
-                    'nama_peminjam' => $request->nama_peminjam,
-                    'no_telp'       => $request->no_telp,
-                    'ket'           => $request->ket,
-                    'tgl_pinjam'    => $request->tgl_pinjam,
-                    'tgl_kembali'   => $request->tgl_kembali,
-                    'image'         => $image_name,
-                    'status'        => $request->status,
-                ]);
-        } else {
-            Student::where('id', $student->id)
-                ->update([
-                    'id_fakultas'   => $request->id_fakultas,
-                    'id_prodi'      => $request->id_prodi,
-                    'gender'        => $request->gender,
-                    'nama'          => $request->nama,
-                    'alamat'        => $request->alamat
-                ]);
-
-            Person::where('id', $student->id_person)
-                ->update([
-                    'nama_peminjam' => $request->nama_peminjam,
-                    'no_telp'       => $request->no_telp,
-                    'ket'           => $request->ket,
-                    'tgl_pinjam'    => $request->tgl_pinjam,
-                    'tgl_kembali'   => $request->tgl_kembali,
-                    'status'        => $request->status,
-                ]);
-        }
-
-        if ($student) {
-            Session::flash('status', 'success');
-            Session::flash('message', 'Data Berhasil Diupdate');
-        }
-
-        return redirect('/student');
-
-        }catch (Exception $e){
+            return redirect('/student');
+        } catch (Exception $e) {
             DB::rollback();
             return $this->error('Terjadi Kesalahan');
         }
@@ -169,11 +167,11 @@ class StudentController extends Controller
 
     public function destroy($id)
     {
-        try{
+        try {
             // $deleteStudent = Student::findOrFail($id);
             $deleteStudent = Student::where('id', $id)->first();
             $idPerson      = Person::where('id', $deleteStudent->id_person)->first();
-            if(Storage::disk('local')->exists('public/image/' . $idPerson->image)){
+            if (Storage::disk('local')->exists('public/image/' . $idPerson->image)) {
                 Storage::delete('public/image/' . $idPerson->image);
             }
             $deletePerson  = Person::destroy($idPerson);
@@ -186,8 +184,7 @@ class StudentController extends Controller
                 Session::flash('message', 'Hapus Data Berhasil');
             }
             return redirect('/student');
-
-        }catch (Exception $e){
+        } catch (Exception $e) {
             DB::rollback();
             return $this->error('Terjadi Kesalahan');
         }

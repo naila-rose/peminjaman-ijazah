@@ -37,7 +37,7 @@
         <div class="col-md-6 grid-margin stretch-card">
             <div class="card card-white">
                 <div class="card-people mt-0">
-                    <img src="images/dashboard/photo.svg" alt="people">
+                    <img src="images/dashboard/rektorat.png" alt="people">
                     <div class="weather-info">
                         <div class="d-flex">
                             <div id="main">
