@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Peminjaman Ijazah | Universitas Brawijaya</title>
+    <title>Peminjaman & Pengambilan Ijazah | Universitas Brawijaya</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- MATERIAL DESIGN ICONIC FONT -->
@@ -38,7 +38,7 @@
                     </div>
                     <div class="form-content">
                         <div class="form-header">
-                            <h3>PEMINJAMAN IJAZAH</h3>
+                            <h3>PEMINJAMAN & PENGAMBILAN IJAZAH</h3>
                         </div>
                         <p>Input Data Ijazah</p>
 
