@@ -47,6 +47,15 @@ Route::get('riwayat', function () {
 Route::get('kelola_admin', function () {
     return view('admin/kelola_admin');
 });
+Route::get('add_admin', function () {
+    return view('admin/add_admin');
+});
+Route::get('edit_admin', function () {
+    return view('admin/edit_admin');
+});
+Route::get('delete_admin', function () {
+    return view('admin/delete_admin');
+});
 
 Route::get('/master', [MasterController::class, 'index']);
 Route::post('/master', [MasterController::class, 'checkNim']);

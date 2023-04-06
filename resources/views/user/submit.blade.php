@@ -14,6 +14,15 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="shortcut icon" href="images/UB.png" />
+    <style>
+        .image {height: 300px; padding-left: 80px; margin-top: -50px}
+        .btn-primary {background-color:#453e79}
+        .btn-primary:hover {background-color: #161942}
+        .next-step
+            {padding: 15px;
+            border-radius: 7px;
+            cursor: pointer;}
+    </style>
 </head>
 
 <body>
@@ -27,15 +36,6 @@
                     <div class="image-holder">
                         <img src="images/BRONE.png" alt="">
                     </div>
-                    <style>
-                        .image {height: 300px; padding-left: 80px; margin-top: -50px}
-                        .btn-primary {background-color:#453e79}
-                        .btn-primary:hover {background-color: #161942}
-                        .next-step
-                            {padding: 15px;
-                            border-radius: 7px;
-                            cursor: pointer;}
-                    </style>
                     <div class="form-content">
                         <div class="form-header">
                             <h3>PEMINJAMAN IJAZAH</h3>

@@ -25,6 +25,12 @@
             border: 1px solid;
             background: #ccc;
         }
+        .btn-primary {background-color:#453e79}
+        .btn-primary:hover {background-color: #161942}
+        .next-step
+            {padding: 15px;
+            border-radius: 7px;
+            cursor: pointer;}
     </style>
 </head>
 
@@ -69,14 +75,6 @@
                                 </div>
                                 <div class="col-md-12 text-center">
                                     <br/>
-                                    <style>
-                                        .btn-primary {background-color:#453e79}
-                                        .btn-primary:hover {background-color: #161942}
-                                        .next-step
-                                            {padding: 15px;
-                                            border-radius: 7px;
-                                            cursor: pointer;}
-                                    </style>
                                     <button class="next-step btn btn-primary font-size-h6">Submit</button>
                                 </div>
                             </div>

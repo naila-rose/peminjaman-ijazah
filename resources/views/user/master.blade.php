@@ -14,6 +14,15 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="shortcut icon" href="images/UB.png" />
+
+    <style>
+        .btn-primary {background-color:#453e79}
+        .btn-primary:hover {background-color: #161942}
+        .next-step
+            {padding: 15px;
+            border-radius: 7px;
+            cursor: pointer;}
+    </style>
 </head>
 
 <body>
@@ -79,14 +88,6 @@
             </div>
 
             <br>
-            <style>
-                .btn-primary {background-color:#453e79}
-                .btn-primary:hover {background-color: #161942}
-                .next-step
-                    {padding: 15px;
-                    border-radius: 7px;
-                    cursor: pointer;}
-            </style>
             <div class="form-group">
                 <button class="next-step btn btn-primary font-size-h6" type="submit">Selanjutnya</button>
             </div>

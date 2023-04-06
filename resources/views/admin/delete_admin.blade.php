@@ -11,17 +11,17 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                {{-- <div class="modal-body">
                     Yakin akan dihapus ?
                     <form action="/student-destroy/{{ $student->id_peminjam }}" method="post" id="delete_form"/>
                     @csrf
                     @method('delete')
                     <input type="hidden" name="delete_id" id="delete_id_p" />
-                </div>
+                </div> --}}
                 <div class="modal-footer">
                     <input type="submit" name="delete" id="delete" value="Delete" class="btn btn-danger" />
                     </form>
-                    <button type="button" href="/student" data-dismiss="modal" class="btn">Cancel</button>
+                    <button type="button" href="/kelola_admin" data-dismiss="modal" class="btn">Cancel</button>
                 </div>
             </div>
         </div>
