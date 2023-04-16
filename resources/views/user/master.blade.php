@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Peminjaman & Pengambilan Ijazah | Universitas Brawijaya</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- MATERIAL DESIGN ICONIC FONT -->
+    <link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+
+    <!-- STYLE CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="shortcut icon" href="images/UB.png" />
+
+    <style>
+        .btn-primary {
+            background-color: #453e79
+        }
+
+        .btn-primary:hover {
+            background-color: #161942
+        }
+
+        .next-step {
+            padding: 15px;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <form action="" method="post" id="wizard">
+            @csrf
+
+            <h2></h2>
+            <section>
+                <div class="inner">
+                    <div class="image-holder">
+                        <img src="images/BRONE.png" alt="">
+                    </div>
+                    <div class="form-content">
+                        <div class="form-header">
+                            <h3>PEMINJAMAN & PENGAMBILAN IJAZAH</h3>
+                        </div>
+                        <p>Input Data Ijazah</p>
+
+                        <div class="form-holder">
+                            <button class="search-nim btn btn-primary" type="submit">Cek NIM</button>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-holder w-100">
+                                <input type="text" placeholder="Masukkan NIM" name="nim" class="form-control"
+                                    value="{{ $studentData->nim ?? '' }}">
+                                @if ($status)
+                                    <span style="color: red; font-weight: bold">{{ $status['info'] ?? ''}}</span>
+                                @endif
+                            </div>
+                        </div>
+        </form>
+
+
+        <form action="/second" method="post" id="wizard">
+            @csrf
+            <div class="form-row">
+                <div class="form-holder w-100">
+                    <input type="text" placeholder="Nomor Ijazah" name="no_ijazah" class="form-control"
+                        value="{{ $studentData->no_ijazah ?? '' }}">
+                    @if ($status)
+                        <span style="color: red; font-weight: bold">{{ $status['no_ijazah'] ?? '' }}</span>
+                    @endif
+                </div>
+            </div>
+            <input type="hidden" name="nim" value="{{ $studentData->nim ?? '' }}">
+            <div class="form-row">
+                <div class="form-holder">
+                    <input type="text" placeholder="Nama" class="form-control" @disabled(true)
+                        value="{{ $studentData->nama ?? '' }}" name="nama">
+                </div>
+                {{-- hidden input untuk kirim data --}}
+                <input type="hidden" value="{{ $studentData->nama ?? '' }}" name="nama">
+
+                <div class="form-holder">
+                    <input type="text" placeholder="Alamat" class="form-control" @disabled(true)
+                        value="{{ $studentData->alamat ?? '' }}" name="alamat">
+                </div>
+                <input type="hidden" value="{{ $studentData->alamat ?? '' }}" name="alamat">
+            </div>
+
+            <div class="form-row">
+                <div class="form-holder">
+                    <input type="text" placeholder="Fakultas" class="form-control" @disabled(true)
+                        value="{{ $studentData->fakultas->fakultas ?? '' }}" name="fakultas">
+                </div>
+                <input type="hidden" value="{{ $studentData->fakultas->fakultas ?? '' }}" name="fakultas">
+
+                <div class="form-holder">
+                    <input type="text" placeholder="Program Studi" class="form-control" @disabled(true)
+                        value="{{ $studentData->prodi->prodi ?? '' }}" name="prodi">
+                </div>
+                <input type="hidden" value="{{ $studentData->prodi->prodi ?? '' }}" name="prodi">
+            </div>
+
+            <br>
+            @if ($studentData)
+                @if ($studentData->no_ijazah)
+                    <div class="form-group">
+                        <button class="next-step btn btn-primary font-size-h6" type="submit">Selanjutnya</button>
+                    </div>
+                @endif
+            @endif
+    </div>
+    </div>
+    </section>
+    </form>
+    </div>
+
+    <!-- JQUERY -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+
+    <!-- JQUERY STEP -->
+    <script src="js/jquery.steps.js"></script>
+    <script src="js/main.js"></script>
+    <!-- Template created and distributed by Colorlib -->
+
+    <script>
+        $(function() {
+            var el = document.getElementsByClassName('{1}')[0];
+            el.style.display = "none";
+        });
+    </script>
+
+
+
+</body>
+
+</html>
