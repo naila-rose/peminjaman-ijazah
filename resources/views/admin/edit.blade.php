@@ -105,7 +105,7 @@
                         </div>
                         <div class="form-group">
                             <div class="d-flex justify-content-center">
-                                <img src="{{ Storage::url('public/images/' . $student->person->image) }}"
+                                <img src="{{ Storage::url('public/uploads/images/' . $student->person->image) }}"
                                     style="max-height: 500px">
                             </div>
                             <label for="image">Upload Gambar Mahasiswa</label>
@@ -142,14 +142,16 @@
                         <div class="form-group">
                             <label for="type">Tipe Pengambilan</label>
                             <div class="form-group">
+                                {{-- @php dd($student->person->type);
+                                @endphp --}}
                                 <select class="form-control" name="type">
                                     <option value="">Pilih Salah Satu</option>
-                                    <option value="pinjam" 
-                                        @if ($student->person->type || old('type') == 'pinjam') selected @endif>
+                                    <option value="pinjam"
+                                        @if ($student->person->type  == 'pinjam' || old('type') == 'pinjam') selected @endif>
                                             Pinjam
                                     </option>
-                                    <option value="ambil" 
-                                        @if ($student->person->type || old('type') == 'ambil') selected @endif>
+                                    <option value="ambil"
+                                        @if ($student->person->type  == 'ambil' || old('type') == 'ambil') selected @endif>
                                             Ambil
                                     </option>
                                 </select>

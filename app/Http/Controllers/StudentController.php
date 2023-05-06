@@ -41,10 +41,10 @@ class StudentController extends Controller
     public function store(StudentCreateRequest $request)
     {
         if ($request->has('image') && $request->has('file')) {
-            
+
             $image = $request->file('image');
             $image_name = time() . '-' .  $image->getClientOriginalName();
-            Storage::putFileAs('public/images/', $image, $image_name);
+            Storage::putFileAs('public/uploads/images/', $image, $image_name);
 
             $file = $request->file('file');
             $file_name = time() . '-' .  $file->getClientOriginalName();
@@ -93,7 +93,7 @@ class StudentController extends Controller
                 'type' => 'required',
             ];
 
-        Validator::make($request->all(), $rules, $messages = 
+        Validator::make($request->all(), $rules, $messages =
             [
                 'type.required'          => 'tipe peminjam harus dipilih',
             ])->validate();
@@ -128,7 +128,7 @@ class StudentController extends Controller
                 $image = $request->file('image');
                 $image_name = time() . '-' .  $image->getClientOriginalName();
                 Storage::putFileAs('public/images/', $image, $image_name);
-                
+
                 $personUpdate['image'] = $image_name;
             }
 
@@ -140,10 +140,10 @@ class StudentController extends Controller
                 $file = $request->file('file');
                 $file_name = time() . '-' .  $file->getClientOriginalName();
                 Storage::putFileAs('public/file/', $file, $file_name);
-                
+
                 $personUpdate['file'] = $file_name;
             }
-                
+
             Student::where('id', $student->id)
                     ->update($studentUpdate);
 
@@ -165,10 +165,10 @@ class StudentController extends Controller
     public function destroy($id)
     {
         try {
-            
+
             $deleteStudent = Student::where('id', $id)->first();
             $idPerson      = Person::where('id', $deleteStudent->id_person)->first();
-            
+
             if (Storage::disk('local')->exists('public/images/' . $idPerson->image)) {
                 Storage::delete('public/images/' . $idPerson->image);
             }
