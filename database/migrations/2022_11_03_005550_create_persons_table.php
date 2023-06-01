@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('image', 255)->nullable();
             $table->string('status', 50)->nullable();
             $table->string('ket', 250)->nullable();
-            $table->boolean('surat_kuasa')->nullable();
             $table->timestamps();
         });
     }
