@@ -175,15 +175,14 @@ class StudentController extends Controller
             if (Storage::disk('local')->exists('public/file/' . $deleteStudent->file)) {
                 Storage::delete('public/file/' . $deleteStudent->file);
             }
-            $deletePerson  = Person::destroy($idPerson);
+
             $deleteStudent->delete();
+            $idPerson->delete();
 
             DB::commit();
 
-            if ($deletePerson) {
-                Session::flash('status', 'success');
-                Session::flash('message', 'Hapus Data Berhasil');
-            }
+            Session::flash('status', 'success');
+            Session::flash('message', 'Hapus Data Berhasil');
             return redirect('/student');
         } catch (Exception $e) {
             DB::rollback();

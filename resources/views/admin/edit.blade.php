@@ -133,6 +133,9 @@
                                     <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                 </span>
                             </div>
+                            <span class="text-info">*Maksimal ukuran file 2MB<br>
+                                                    *Format file wajib berbentuk PDF
+                            </span>
                             @error('file')
                                 <div class="text-danger">
                                     <span>{{ $message }}</span>
@@ -142,8 +145,6 @@
                         <div class="form-group">
                             <label for="type">Tipe Pengambilan</label>
                             <div class="form-group">
-                                {{-- @php dd($student->person->type);
-                                @endphp --}}
                                 <select class="form-control" name="type">
                                     <option value="">Pilih Salah Satu</option>
                                     <option value="pinjam"
