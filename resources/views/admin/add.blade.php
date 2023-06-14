@@ -122,6 +122,9 @@
                                     <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
                                 </span>
                             </div>
+                            <span class="text-info">*Maksimal ukuran file 2MB<br>
+                                                    *Format file wajib berbentuk PDF
+                            </span>
                             @error('file')
                                 <span class="text-danger">*{{ $message }}</span>
                             @enderror
@@ -131,11 +134,11 @@
                             <div class="form-group">
                                 <select class="form-control" name="type">
                                     <option value="">Pilih Salah Satu</option>
-                                    <option value="pinjam" 
+                                    <option value="pinjam"
                                         @if (old('type') == 'pinjam') selected @endif>
                                             Pinjam
                                     </option>
-                                    <option value="ambil" 
+                                    <option value="ambil"
                                         @if (old('type') == 'ambil') selected @endif>
                                             Ambil
                                     </option>

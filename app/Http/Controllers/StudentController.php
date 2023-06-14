@@ -121,13 +121,13 @@ class StudentController extends Controller
             ];
 
             if ($request->has('image')) {
-                if (Storage::disk('local')->exists('public/images/' . $student->person->image)) {
-                    Storage::delete('public/images/' . $student->person->image);
+                if (Storage::disk('local')->exists('public/uploads/images/' . $student->person->image)) {
+                    Storage::delete('public/uploads/images/' . $student->person->image);
                 }
 
                 $image = $request->file('image');
                 $image_name = time() . '-' .  $image->getClientOriginalName();
-                Storage::putFileAs('public/images/', $image, $image_name);
+                Storage::putFileAs('public/uploads/images/', $image, $image_name);
 
                 $personUpdate['image'] = $image_name;
             }
